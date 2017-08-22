@@ -1,3 +1,16 @@
+const handler = require('./hanlders.js');
+
+module.exports = (req, res) => {
+  const url = req.url;
+  if (url === '/login') {
+    handler.loginHandler(req, res);
+  } else if (url === '/signup') {
+    handler.signupHandler(req, res);
+  } else {
+    handler.genaricHandler(req, res);
+  }
+};
+
 /*
 'GET /' ==>homepage - login
 'POST /login' ==> login
