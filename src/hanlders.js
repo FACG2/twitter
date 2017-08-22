@@ -63,6 +63,10 @@ function signupHandler (req, res) {
   req.on('data', (chunk) => {
     signupData += chunk;
   });
+  req.on('error', () => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Connection Error');
+  });
   req.on('end', () => {
     validation.signupValidation(signupData, (error, result) => {
       if (error || result.msg !== '') {
@@ -74,9 +78,6 @@ function signupHandler (req, res) {
         res.end();
       }
     });
-  req.on('error', () => {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Connection Error');
   });
 }
 
