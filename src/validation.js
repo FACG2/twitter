@@ -1,7 +1,7 @@
 const dbfunctions = require('./db_functions.js');
 
 function loginValidation (username, password, cb) {
-  let loginRet = {msg: '', userRes: ''};
+  var loginRet = {msg: '', userRes: ''};
   if (username.trim().length < 1 || password.length < 6) {
     loginRet.msg = 'username is empty or password is less than 6 char';
     cb(null, loginRet);
