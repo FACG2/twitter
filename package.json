@@ -1,0 +1,30 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "watch": "nodemon src/server.js",
+    "linter" : "semistandard --fix "
+  },
+  "pre-commit": [
+    "linter"
+    ]
+  ,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FACG2/twitter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FACG2/twitter/issues"
+  },
+  "homepage": "https://github.com/FACG2/twitter#readme",
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  }
+}
