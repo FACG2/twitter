@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="walid,Eslam,Hana,Kefah">
+  <meta name="description" content="Twitter">
+  <meta name="viewport" content="initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Twitter</title>
+</head>
+  <body>
+    <header>
+      <nav>
+        <div class="container">
+          <a class="logo" href="#">
+            Twitter
+          </a>
+          <div id="userNav">
+
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="mainContent">
+      <section id="loginSection">
+        <form id="loginForm" action="/login" method="post">
+          <input type="text" name="username" value="" placeholder="User Name ...." required>
+          <input type="text" name="password" value="" placeholder="Password ...." required>
+        </form>
+      </section>
+      <section id="signupSection">
+        <form id="signupForm" action="/signup" method="post">
+          <input type="text" name="username" value="" placeholder="User Name ...." required>
+          <input type="text" name="password" value="" placeholder="Password ...." required>
+        </form>
+      </section>
+    </div>
+    <script type="text/javascript" src="js/request.js"></script>
+    <script type="text/javascript" src="js/index_dom.js"></script>
+  </body>
+</html>
