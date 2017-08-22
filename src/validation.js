@@ -32,20 +32,20 @@ function signupValidation (signupData, cb) {
   } else {
     dbfunctions.searchUser(signupData.username, (err, ress) => {
       if (err) {
-        loginRet.msg = 'invalid register';
+        signupRet.msg = 'invalid register';
         cb(err, signupRet);
       } else if (ress.length === 0) {
         signupRet.userRes = signupData.username;
         dbfunctions.addUser(signupData, (err2, ress2) => {
           if (err2) {
-            loginRet.msg = 'Database connection error';
-            cb(err2, loginRet);
+            signupRet.msg = 'Database connection error';
+            cb(err2, signupRet);
           } else {
             cb(null, signupRet);
           }
         });
       } else {
-        loginRet.msg = 'username is already a member';
+        signupRet.msg = 'username is already a member';
         cb(null, signupRet);
       }
     });

@@ -1,7 +1,7 @@
 const getData = require('./queries/generic');
 
 function test (query, cb) {
-  let obj = {};
+  // let obj = {};
   // const query = `SELECT teams.id AS team_id, teams.name AS team_name , teams.description AS team_description
   //                 , memebers.name AS member_name ,
   //                 projects.id AS project_id , projects.title AS project_name , projects.state AS project_state FROM teams_members

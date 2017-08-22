@@ -1,5 +1,5 @@
 const fs = require('fs');
-const cookie = require('cookie');
+// const cookie = require('cookie');
 const jwt = require('jsonwebtoken');
 const validation = require('./validation.js');
 function genaricHandler (req, res) {
@@ -15,9 +15,9 @@ function genaricHandler (req, res) {
     js: 'application/javascript',
     ico: 'image/x-icon'
   };
-  fs.readFile(__dirname + '/../public/' + url, (err, data) => {
+  fs.readFile(`${__dirname}/../public/${url}`, (err, data) => {
     if (err) {
-      fs.readFile(__dirname + '/../public/404.html', (err2, data2) => {
+      fs.readFile(`${__dirname}/../public/404.html`, (err2, data2) => {
         if (err2) {
           res.writeHead(500, {'Content-Type': 'text/html'});
           res.end('<h1>500 , Server Error</h1>');
