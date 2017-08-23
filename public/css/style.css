@@ -1,3 +1,13 @@
+html{
+  height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -5,157 +15,162 @@
 
 .container {
   width: 100%;
-  max-width: 1200px;*/
-  margin: 0 auto;
+
 }
 
-.maincontent{
-  background-color: red;
-}
-/******** BODY IMAGE ***************/
 
-body{
-  background: url(../background.jpg) no-repeat -300px -800px;
-}
-
-/******** END BODY IMAGE **************/
-/************ START HEADER CSS **************/
 header {
-    height:70px;
-    background:#fff;
-    border:1px solid #CCC;
+  background-color: #fff;
+  height: 70px;
 }
 
-a {
-  text-decoration: none;
-
-}
-.branding img {
-  float: left;
-  width: 50px;
-  height: 50px;
-  padding: 10px;
-  padding-left: 50px;
-  padding-right: 1px;
-}
-
-.branding h3 {
-  position: relative;
-  top: 18px;
-  left: 10px;
+header a{
+  font-family: monospace, sans-serif;
+  font-size: 20px;
   color: #1da1f2;
-  text-decoration: none;
-  padding-top: 8px;
-}
-
-#userNav h3{
-
-  float: right;
-  top: 18px;
-  left: 10px;
-  color: #1da1f2;
-  text-decoration: none;
-  margin-right: 50px;
-  margin-bottom: 15px;
-
-}
-/************ END HEADER CSS ************/
-/******** START  LOGIN FORM CSS ********/
-
-#loginSection{
-  float: right;
-  background-color: yellow;
-  padding: 15px;
-  width: 300;
-  margin-right: 200px;
-  margin-top: 50px;
-  max-height: 500px;
-
-}
-
-form#loginForm button{
-  height: 32px;
-  background:#FFFFFF;
-  /*border:5px;*/
-  border-color: #1da1f2;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #1da1f2;
-  float: right;
-  border-radius: 20px;
   font-weight: bold;
+  text-decoration: none;
 }
 
-form#loginForm button:hover{
-  background-color: #eaf5fd;
-}
-
-/*#newsletter form {
-  float: right;
-  margin-top: 15px;
-}*/
-section#loginSection form input, section#signupSection form input {
-width: 90%;
-padding: 5px;
-margin-bottom: 5px;
+div a{
+  margin-top: 10px;
+margin-left: 10px;
 
 }
 
-h3#loginh3{
-  font-family: monospace ,sans-serif;
+.mainContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    /* margin: 0 auto; */
+    width: 100%;
+    background-image: url('../img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-title{
   margin-bottom: 5px;
+  font-size: 25px;
 }
 
-/******** END  LOGIN FORM CSS ********/
-
-/********* START SIGNUP FORM CSS *****/
-
-#signupSection{
-  float: left;
-  padding: 15px;
-  width: 350px;
-  max-height: 500px;
-  margin-left: 150px;
-  margin-right: 50px;
-  margin-top: 50px;
-  border: 3px;
-}
-
-form#signupForm button{
-  height: 32px;
-  background:#1da1f2;
-  border:0;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #ffffff;
-  float: right;
-  border-radius: 20px;
-  font-weight: bold;
-}
-
-/*#newsletter form {
-  float: right;
-  margin-top: 15px;
-}*/
-
-h3#signuph3{
-  font-family: monospace ,sans-serif;
-  margin-bottom: 10px;
-}
-
-form#signupForm button:hover{
-  background-color: #006dbf;
-}
-
-hr{
-  color: #f4f6f9;
+h2{
   margin-bottom: 5px;
+  font-size: 25px;
 }
-/********* END SIGNUP FORM CSS *******/
 
-section#loginSection, section#signupSection{
-  max-height: 500px;
-  max-width: 400px;
+input[type="submit"] {
+    border-radius: 60px;
+    background-color: rgb(29, 161, 242);
+    width: 40%;
+    height: 35px;
+    float: right;
+    margin-right: 45px;
+    font-weight: bold;
+    font: #fff;
+    font: white;
+}
+
+nav {
+  width: 800px;
   padding: 20px;
-  position: relative;
+  margin-left: 100px;
 }
+#signupSection input[type="submit"]:hover {
+    border-radius: 30px;
+    background-color: #006dbf;
+    width: 40%;
+    height: 35px;
+    float: right;
+    margin-right: 45px;
+    border-color: rgb(29, 161, 242);
+}
+
+
+#loginSection input[type="submit"] {
+    border-radius: 30px;
+    background-color: #fff;
+    width: 40%;
+    height: 35px;
+    float: right;
+    margin-right: 45px;
+    border: 2px solid;
+    border-color: rgb(29, 161, 242);
+}
+
+#loginSection input[type="submit"]:hover {
+    border-radius: 30px;
+    background-color: #e5f2ff;
+    width: 40%;
+    height: 35px;
+    float: right;
+    margin-right: 45px;
+    border: 2px solid;
+    border-color: rgb(29, 161, 242);
+}
+
+
+
+input[type="radio"] {
+margin-left: 15px;
+}
+
+input{
+  /*height: 30px;
+  width: 300px;*/
+  margin-bottom: 5px;
+}
+.input-word{
+  height: 30px;
+  width: 300px;
+}
+section#signupSection {
+    width: 350px;
+    height: 196px;
+    padding: 50px;
+    background-color: white;
+    margin: 30px;
+}
+
+
+section#loginSection {
+    width: 350px;
+    height: 134px;
+    padding: 50px;
+    background-color: white;
+    margin: 50px;
+  }
+
+    /* media query */
+    @media (max-width: 768px) {
+      header .container,
+      header nav,
+     #signupSection
+      /*#boxs .box,
+      article#main-col,
+      aside#sider{*/
+      {
+        width: 100%;
+        float: left;
+        text-align: center;
+      }
+
+    header {
+      padding-bottom: 20px;
+    }
+    /*#showcase h1 {
+      margin-top: 40px;
+    }
+    #newsletter button,
+    .button1
+     {
+      display: block;
+      width: 100%;
+    }
+    #newsletter form input[type="email"], .quote input, .quote textarea{
+      width: 100%;
+      margin-bottom: 5px;
+    }*/
+      }
