@@ -155,12 +155,17 @@ function getuserData (req, res) {
           res.writeHead(404, {'Content-Type': 'application/json'});
           res.end(JSON.stringify({status: false, errorMsg: err}));
         } else {
+          const user = {
+            username: userDetails.username,
+            avatar: userDetails.avatar,
+            status: true,
+            errorMsg: ''
+          };
           res.writeHead(200, {'Content-Type': 'application/json'});
-          res.end(JSON.stringify(userDetails));
+          res.end(JSON.stringify(user));
         }
       });
     }
-  // getUser()
   });
 }
 module.exports = {
