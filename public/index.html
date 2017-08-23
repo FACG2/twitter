@@ -17,47 +17,38 @@
         <div class="container">
             <img src="./img/logo.png" alt="" style="width:50px;height:50px;">
           <a class="logo" href="#">Twitter</a>
-
-        <div id="userNav">
-        </div>
+          <div id="userNav">
+            <!-- avatar image + userNAme From the Cookie -->
+          </div>
         </div>
       </nav>
 
     </header>
     <div class="mainContent container">
-        <section id="signupSection">
-          <h2>New to Twitter? <span style="color:gray">Sign Up</span></h2>
-          <div class="errNote"></div>
-          <form id="signupForm" action="/signup" method="post">
-            <input class="input-word" type="text" name="username" value="" placeholder="User Name ...." required>
-            <br>
-
-
-            <input class="input-word"  type="text" name="password" value="" placeholder="Password ...." required>
-            <br>
-            <input class="input-word" type="text" name="confirmPassword" value="" placeholder="Confirm password ...." required>
-            <br>
-              <input type="radio" name="gender" value="male" checked class="radio"> Male
-              <input type="radio" name="gender" value="female"> Female
-              <br>
-            <input type="submit" name="submit" value="Sign up">
-          </form>
-        </section>
-
-
-        <section id="loginSection">
-          <h2 class="login-title">Login</h2>
-
-          <div class="errNote"></div>
-          <form id="loginForm" action="/login" method="post">
-            <input class="input-word" type="text" name="username" value="" placeholder="User Name ...." required>
-            <br>
-            <input class="input-word" type="text" name="password" value="" placeholder="Password ...." required>
-            <br>
-            <input  type="submit" name="submit" value="Login">
-          </form>
-        </section>
-
+      <h2>Login</h2>
+      <section id="loginSection">
+        <div class="errNote"></div>
+        <form id="loginForm" action="/login" method="post">
+          <input type="text" name="username" value="" placeholder="User Name ...." required>
+          <input type="text" name="password" value="" placeholder="Password ...." required>
+          <input type="submit" name="submit" value="Login">
+        </form>
+      </section>
+      <section id="signupSection">
+        <h2>Sign Up</h2>
+        <div class="errNote"></div>
+        <form id="signupForm" action="/signup" method="post">
+          <input type="text" name="username" value="" placeholder="User Name ...." required>
+          <label>Gender :
+            <input type="radio" name="gender" value="male" checked> Male<br>
+            <input type="radio" name="gender" value="female"> Female<br>
+          </label>
+          <input type="text" name="password" value="" placeholder="Password ...." required>
+          <input type="text" name="confirmPassword" value="" placeholder="Confirm password ...." required>
+          <input id="signupSub" type="submit" name="submit" value="Sign up">
+        </form>
+      </section>
+    </div>
     <script type="text/javascript" src="js/request.js"></script>
     <script type="text/javascript" src="js/validation.js"></script>
     <script type="text/javascript" src="js/index_dom.js"></script>

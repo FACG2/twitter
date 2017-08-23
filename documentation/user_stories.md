@@ -1,4 +1,4 @@
-As a user I can do the following:
+#### As a user I can do the following:
 - Logout
 - Add new tweet
 - Edit tweet
@@ -8,7 +8,11 @@ As a user I can do the following:
 - Comment on other's tweets
 - Like other's tweets
 - Upload picture
-As a guest I can do the following:
+
+### As a guest I can do the following:
 - Signup
 - Login
 - view all tweets
+
+
+[Back](https://github.com/FACG2/twitter/blob/master/README.md)
