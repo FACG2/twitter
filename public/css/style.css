@@ -102,3 +102,55 @@ header{
   line-height: 2;
   margin: 0 auto;
 }
+
+/* profile css**/
+.userInfo{
+  max-width: 270px;
+  width: 100%;
+  background: darkgray;
+  padding: 20px 0;
+}
+#profileAvatar{
+  border-radius: 50%;
+  width: 20vw;
+  height: 20vw;
+}
+.profileCont{
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 1000px;
+}
+#userTweets{
+  width: 100%;
+  padding-left:20px;
+  padding-top: 20px;
+}
+#userTweets .tweetHeader{
+  justify-content: flex-start;
+  width: 30%;
+}
+.userTweet {
+  display: flex;
+  align-items: center;
+}
+p.tweetBody {
+  border-left: 1px solid #cecece;
+  width: 65%;
+  margin-left: 5%;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+.headerDate{
+  color: gray;
+  font-size:10px;
+}
+.userInfo .info p{
+  padding-left: 20px;
+}
+.userInfo .info h2{
+  text-align: center;
+}
