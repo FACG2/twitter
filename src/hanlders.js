@@ -6,6 +6,8 @@ function genaricHandler (req, res) {
   let url = req.url;
   if (url === '/') {
     url = 'index.html';
+  } else if (url == '/home') {
+    url = 'home.html';
   }
   let parts = url.split('.');
   const fileExtention = parts[parts.length - 1];
@@ -17,7 +19,7 @@ function genaricHandler (req, res) {
   };
   fs.readFile(`${__dirname}/../public/${url}`, (err, data) => {
     if (err) {
-      fs.readFile(`${__dirname}/../public/404.html`, (err2, data2) => {
+      fs.readFile(`${__dirname}/../public/404.html`,'utf-8', (err2, data2) => {
         if (err2) {
           res.writeHead(500, {'Content-Type': 'text/html'});
           res.end('<h1>500 , Server Error</h1>');
@@ -41,14 +43,19 @@ function loginHandler (req, res) {
     loginData += chunk;
   });
   req.on('end', () => {
+    loginData = JSON.parse(loginData);
     validation.loginValidation(loginData.username, loginData.password, (error, result) => {
       if (error || result.msg !== '') {
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.end(result.msg);
       } else {
         let token = jwt.sign({userName: result.userRes}, 'twitter shhh');
-        res.writeHead(302, {'Location': '/home', 'Set-Cookie': `token=${token}`});
-        res.end();
+        res.writeHead(200, {'Set-Cookie': [
+          `user=${result.userRes};`,
+          `avatar=${result.avatar};`,
+          `token=${token};`
+        ]});
+        res.end('');
       }
     });
   });
@@ -68,14 +75,19 @@ function signupHandler (req, res) {
     res.end('Connection Error');
   });
   req.on('end', () => {
+    signupData = JSON.parse(signupData);
     validation.signupValidation(signupData, (error, result) => {
       if (error || result.msg !== '') {
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.end(result.msg);
       } else {
         var token = jwt.sign({userName: result.userRes}, 'twitter shhh');
-        res.writeHead(302, {'Location': '/home', 'Set-Cookie': `token=${token}`});
-        res.end();
+        res.writeHead(200, {'Set-Cookie': [
+          `user=${result.userRes};`,
+          `avatar=${result.avatar};`,
+          `token=${token};`
+        ]});
+        res.end('');
       }
     });
   });
