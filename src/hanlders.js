@@ -1,6 +1,7 @@
 const fs = require('fs');
 const cookie = require('cookie');
 const jwt = require('jsonwebtoken');
+const dbfunctions = require('./db_functions.js');
 const validation = require('./validation.js');
 const {insertTweet, getAllTweetFromDB} = require('./db_functions.js');
 
@@ -94,9 +95,33 @@ function signupHandler (req, res) {
     });
   });
 }
+function getProfileInfoHandler (req, res, username) {
+  dbfunctions.profileInfo(username, (err, ress) => {
+    if (err) {
+      res.writeHead(500, {'Content-Type': 'text/html'});
+      res.end('<h1>500 , Server Error</h1>');
+    } else {
+      res.writeHead(200);
+      res.end(JSON.stringify(ress[0]));
+    }
+  });
+}
+
+function getProfileTweetsHandler (req, res, username) {
+  dbfunctions.profileTweets(username, (err, ress) => {
+    if (err) {
+      console.log(err);
+      res.writeHead(500, {'Content-Type': 'text/html'});
+      res.end('<h1>500 , Server Error</h1>');
+    } else {
+      res.writeHead(200);
+      res.end(JSON.stringify(ress));
+    }
+  });
+}
+
 function createtweet (req, res) {
   const token = cookie.parse(req.cookie).token;
-
   jwt.verify(token, 'twitter shhh', function (err, user) {
     if (err) {
       res.writeHead(401, {'Content-Type': 'text/html'});
@@ -145,6 +170,8 @@ module.exports = {
   genaricHandler,
   loginHandler,
   signupHandler,
+  getProfileInfoHandler,
+  getProfileTweetsHandler,
   createtweet,
   getalltweets
 };
