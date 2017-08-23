@@ -16,7 +16,6 @@
        cb(err);
      } else {
        cb(null, res.rows);
-
      }
    });
  };
