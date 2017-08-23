@@ -1,4 +1,4 @@
-users Table ==>
+**users Table ==>**
   - id (primary key , serial)
   - username (varchar(100) NOT NULL)
   - bio (text DEFAULT no description)
@@ -6,13 +6,13 @@ users Table ==>
   - gender (varchar (1) NOT NULL)
   - avatar (varchar(100) DEFAULT defurl)
 
-tweets Table ==>
+**tweets Table ==>**
   - id (primary key , serial)
   - owner_id (FK(users(id)))
   - context (text NOT NULL)
   - date (TIMESTAMP() NOT NULL)
 
-comments Table ==>
+**comments Table ==>**
 - id (primary key , serial)
 - owner_id (FK(users(id)))
 - tweet_id (FK(tweets(id)))
