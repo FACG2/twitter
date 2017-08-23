@@ -11,13 +11,12 @@
         cpassword: signupData[4].value,
         gender: signupData[1].checked ? 'M' : 'F'
       };
-      apiReq(signupReq, function (err, data) {
+      apiReq(signupReq, function (err, data) {// eslint-disable-line
         if (err) {
-          document.getElementsByClassName('errNote')[1].textContent= 'Connection Error!'
-        }else{
+          document.getElementsByClassName('errNote')[1].textContent = 'Connection Error!';
+        } else {
           document.getElementsByClassName('errNote')[1].textContent = data;
         }
-
       });
     });
   }

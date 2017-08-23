@@ -50,8 +50,10 @@ var validation = {
     }
     submitSignup.disabled = !(isFormValid(validation));
   });
+  signupNoteDiv.textContent = validationErrors.reduce(function (acc, message) {
+    acc += message;
+  }, '');
   // enable or disable submit button of signup
-
 })();
 function isFormValid (sourceOfTrue) {
   return Object.values(sourceOfTrue).reduce(function (acc, source) {
