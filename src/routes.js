@@ -12,7 +12,6 @@ module.exports = (req, res) => {
     if (urlParts[3] === 'getData') { // get profile info
       handler.getProfileInfoHandler(req, res, urlParts[2]);
     } else if (urlParts[3] === 'tweets') { // get user tweets
-      console.log('www');
       handler.getProfileTweetsHandler(req, res, urlParts[2]);
     } else if (urlParts.length === 3) { // get profile page
       req.url = 'profile.html';
