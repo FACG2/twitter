@@ -30,18 +30,12 @@ Also the user will be able to write, delete and edits his own tweets and view ot
 [Here](https://github.com/FACG2/twitter/blob/master/documentation/user_interfaces.md)
 
 
- ### How does the site work locally:
- 1.
+ ### How to install the project:
+ 1.Clone the repository from [Here](https://github.com/FACG2/twitter)
 
- 2.
+ 2. run the code by ```js npm start ```
 
- 3.
-
- 4.
-
- 5.
-
- 6.
+ 3. Run the project on the browser localhost:4000
 
  ### Visit the site from [Here](http://heroku.com)
 
