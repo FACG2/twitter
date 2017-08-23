@@ -11,13 +11,17 @@
         cpassword: signupData[4].value,
         gender: signupData[1].checked ? 'M' : 'F'
       };
-      apiReq(signupReq, function (err, data) {// eslint-disable-line
+      apiReq('/signup','POST', function (err, data) {// eslint-disable-line
         if (err) {
           document.getElementsByClassName('errNote')[1].textContent = 'Connection Error!';
         } else {
-          document.getElementsByClassName('errNote')[1].textContent = data;
+          if (data === '') {
+            window.location.href = '/home';
+          } else {
+            document.getElementsByClassName('errNote')[1].textContent = data;
+          }
         }
-      });
+      }, JSON.stringify(signupReq));
     });
   }
 /*
@@ -29,4 +33,26 @@ gender
 }
 */
   /* Login listener */
+  var loginForm = document.getElementById('loginForm');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var loginData = event.target;
+      var loginReq = {
+        username: loginData[0].value,
+        password: loginData[1].value
+      };
+      apiReq('/login','POST', function (err, data) {// eslint-disable-line
+        if (err) {
+          document.getElementsByClassName('errNote')[0].textContent = 'Connection Error!';
+        } else {
+          if (data === '') {
+            window.location.href = '/home';
+          } else {
+            document.getElementsByClassName('errNote')[0].textContent = data;
+          }
+        }
+      }, JSON.stringify(loginReq));
+    });
+  }
 })();
