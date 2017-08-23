@@ -32,13 +32,13 @@ const addUser = (obj, cb) => {// eslint-disable-line
 // errorMsg
 // { status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!' ,errorMsg:''}
  const insertTweet = (userName, tweetText, cb) => {
-   getUserId(username, (err, user) => {
+   getUserId(userName, (err, user) => {
      if (err) {
        cb(err);
      } else {
        const sql = {
-         text: 'INSERT INTO tweets (owner_id , context) VALUES ($1 , $2)',
-         values: [user.id, tweetText]
+         text: 'INSERT INTO tweets (owner_id , context ,date) VALUES ($1 , $2 ,to_timestamp($3))',
+         values: [user.id, tweetText, Date.now() / 1000 ]
        };
        dbConnection.query(sql, (err, res) => {
          if (err) {
@@ -69,7 +69,12 @@ const addUser = (obj, cb) => {// eslint-disable-line
      }
    });
  };
-
+ insertTweet('eslam', 'hellloww foks!! ^_^', (err, res) => {
+   if (err) {
+     console.log(err);
+   }
+   console.log(res);
+ });
  module.exports = {
    loginQuery,
    addUser,
