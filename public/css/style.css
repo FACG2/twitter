@@ -51,6 +51,19 @@ margin-left: 10px;
     background-size: cover;
 }
 
+.mainContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    /* margin: 0 auto; */
+    width: 100%;
+    background-image: url('../img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .login-title{
   margin-bottom: 5px;
   font-size: 25px;
