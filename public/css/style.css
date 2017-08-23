@@ -3,7 +3,7 @@ html{
 }
 
 body {
-    min-height: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -34,7 +34,7 @@ header a{
 
 div a{
   margin-top: 10px;
-margin-left: 10px;
+  margin-left: 10px;
 
 }
 
@@ -49,6 +49,19 @@ margin-left: 10px;
     background-image: url('../img/background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.errorcont{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  /* margin: 0 auto; */
+  width: 100%;
+  background-image: url('../img/error.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .mainContent {
@@ -91,6 +104,7 @@ nav {
   padding: 20px;
   margin-left: 100px;
 }
+
 #signupSection input[type="submit"]:hover {
     border-radius: 30px;
     background-color: #006dbf;
@@ -124,6 +138,93 @@ nav {
     border-color: rgb(29, 161, 242);
 }
 
+/****  home page ****/
+.addNewTweet {
+    width: 350px;
+    height: 61px;
+    padding: 50px;
+    background-color: white;
+    margin: -30px;
+    margin-top: 195px;
+}
+
+.recentTweets {
+    width: 350px;
+    padding: 50px;
+    background-color: white;
+    margin: -5px;
+}
+
+p {
+    padding: 20px 40px;
+    border-radius: 30px;
+    border: 2px solid;
+    border-color: #2b99da;
+    color: gray;
+    margin-top: 20px;
+}
+
+.mainContenttweet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#bavatar{
+    height: 35px;
+    float: left;
+}
+
+
+button[type="submit"] {
+    border-radius: 30px;
+    background-color: #fff;
+    width: 40%;
+    height: 35px;
+    float: right;
+    margin-right: 45px;
+    border: 2px solid;
+    border-color: rgb(29, 161, 242);
+}
+
+button[type="submit"]:hover {
+    border-radius: 30px;
+    background-color: #e5f2ff;
+    width: 40%;
+    height: 35px;
+    float: right;
+    margin-right: 45px;
+    border: 2px solid;
+    border-color: rgb(29, 161, 242);
+}
+
+#tweetText{
+    margin-bottom: 5px;
+    height: 30px;
+    width: 300px;
+  }
+
+h6{
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+
+/*section#signupSection {
+    width: 350px;
+    height: 196px;
+    padding: 50px;
+    background-color: white;
+    margin: 30px;*/
+
+/**** home page  ***/
 
 
 input[type="radio"] {
