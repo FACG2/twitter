@@ -1,6 +1,7 @@
 const fs = require('fs');
 // const cookie = require('cookie');
 const jwt = require('jsonwebtoken');
+const dbfunctions = require('./db_functions.js');
 const validation = require('./validation.js');
 function genaricHandler (req, res) {
   let url = req.url;
@@ -19,7 +20,7 @@ function genaricHandler (req, res) {
   };
   fs.readFile(`${__dirname}/../public/${url}`, (err, data) => {
     if (err) {
-      fs.readFile(`${__dirname}/../public/404.html`,'utf-8', (err2, data2) => {
+      fs.readFile(`${__dirname}/../public/404.html`, 'utf-8', (err2, data2) => {
         if (err2) {
           res.writeHead(500, {'Content-Type': 'text/html'});
           res.end('<h1>500 , Server Error</h1>');
@@ -93,8 +94,35 @@ function signupHandler (req, res) {
   });
 }
 
+function getProfileInfoHandler (req, res, username) {
+  dbfunctions.profileInfo(username, (err, ress) => {
+    if (err) {
+      res.writeHead(500, {'Content-Type': 'text/html'});
+      res.end('<h1>500 , Server Error</h1>');
+    } else {
+      res.writeHead(200);
+      res.end(JSON.stringify(ress[0]));
+    }
+  });
+}
+
+function getProfileTweetsHandler (req, res, username) {
+  dbfunctions.profileTweets(username, (err, ress) => {
+    if (err) {
+      console.log(err);
+      res.writeHead(500, {'Content-Type': 'text/html'});
+      res.end('<h1>500 , Server Error</h1>');
+    } else {
+      res.writeHead(200);
+      res.end(JSON.stringify(ress));
+    }
+  });
+}
+
 module.exports = {
   genaricHandler,
   loginHandler,
-  signupHandler
+  signupHandler,
+  getProfileInfoHandler,
+  getProfileTweetsHandler
 };

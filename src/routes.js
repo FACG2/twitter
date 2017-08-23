@@ -7,6 +7,20 @@ module.exports = (req, res) => {
     handler.loginHandler(req, res);
   } else if (url === '/signup' && method === 'POST') {
     handler.signupHandler(req, res);
+  } else if (url.startsWith('/users/') && method === 'GET') {
+    let urlParts = url.split('/');
+    if (urlParts[3] === 'getData') { // get profile info
+      handler.getProfileInfoHandler(req, res, urlParts[2]);
+    } else if (urlParts[3] === 'tweets') { // get user tweets
+      console.log('www');
+      handler.getProfileTweetsHandler(req, res, urlParts[2]);
+    } else if (urlParts.length === 3) { // get profile page
+      req.url = 'profile.html';
+      handler.genaricHandler(req, res);
+    } else {
+      req.url = req.url.replace('/users/', '/');// /users/css/style.css
+      handler.genaricHandler(req, res);
+    }
   } else {
     handler.genaricHandler(req, res);
   }
@@ -25,7 +39,7 @@ module.exports = (req, res) => {
 
 'generic'
 
-'GET /user:id' ==> render profile.html
-'GET /user:id/getData' ==>xhr getuserData\
-
+'GET /users/:username' ==> render profile.html
+'GET /users/:username/getData' ==>xhr getuserData\ {avatar , gender , bio , numberof tweets,username}
+'GET /users/:username/tweets'
 */
