@@ -31,7 +31,8 @@ if (addTweetForm) {
   });
 }
 // just to be more specific ,we check if there is acookie and there is a username in the payload
-if (document.cookie && document.cookie.payload.username !== undefined) {
+// document.cookie.payload.username = undefined;
+if (false/* document.cookie && document.cookie.payload.username !== undefined */) {
   navElements.username.textContent = document.cookie.payload.username;
   navElements.pAvatar.src = document.cookie.payload.avatarUrl;
 } else {
@@ -72,26 +73,33 @@ function errorHandler (err, location) {
 
 function renderTweet (response) {
 // profile avatar , user name(tweet owner) , singleTweet = tweetBody
+  console.log(response);
   var tweetText = response.context;
   var tweetOwner = response.username;
   var tweetAvataUrl = response.avatar;
 
-  var tweetList = document.querySelector('.recentTweets');
+  var tweetList = document.getElementsByClassName('recentTweets')[0];
+  var tweet = document.createElement('div');
+  tweet.classList.add('singleTweet');
+  var tweetHeader = document.createElement('div');
+  tweetHeader.classList.add('tweetHeader');
 
-  var avatar = document.querySelector('.tweetHeader > img')[0];
+  var avatar = document.createElement('img');
   avatar.src = tweetAvataUrl;
-  tweetList.appendChild(avatar);
-  var tweeterName = document.querySelector('.tweetHeader > h6')[0];
+  tweetHeader.appendChild(avatar);
+  var tweeterName = document.createElement('h6');
   tweeterName.textContent = tweetOwner;
-  tweetList.appendChild(tweeterName);
-  var tweetBody = document.querySelector('.singleTweet > p')[0];
+  tweetHeader.appendChild(tweeterName);
+  var tweetBody = document.createElement('p');
   tweetBody.textContent = tweetText;
-  tweetList.appendChild(tweetBody);
+  tweet.appendChild(tweetHeader);
+  tweet.appendChild(tweetBody);
+
+  tweetList.appendChild(tweet);
 }
 
-window.addEventListener('onload', (e) => {
+(function () {
   // {[{context:' ' , username:'' , avatar:'link'} ,,, {}]}
-  e.preventDefault();
   apiReq('/getalltweets', 'GET', (err, tweets) => {
     if (err) {
       errorHandler(err, 'getalltweets');
@@ -102,4 +110,4 @@ window.addEventListener('onload', (e) => {
       });
     }
   });
-});
+})();
