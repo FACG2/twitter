@@ -35,8 +35,10 @@ function generateTweetsDivs (avatar, username, tweetsArray) {
     return acc += '<div class="userTweet">' +
               '<div class="tweetHeader">' +
                 '<img src="' + avatar + '" alt="' + username + '">' +
-                '<p>' + username + '</p>' +
-                '<p>' + tweet.date + '</p>' +
+                '<div class="headerP">' +
+                  '<p>' + username + '</p>' +
+                  '<p class="headerDate">' + tweet.date + '</p>' +
+                '</div>' +
               '</div>' +
             '<p class="tweetBody">' + tweet.context + '</p>' +
           '</div>';

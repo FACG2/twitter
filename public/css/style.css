@@ -22,6 +22,26 @@ body{
 header{
   background: rgba(255,255,255,0.6);
 }
+nav .container{
+  display: flex;
+  justify-content: space-around
+}
+#userNav{
+  display: flex;
+  align-items: center;
+}
+.logout{
+  color: #1da1f2;
+  cursor: pointer;
+}
+#userNav img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.navUser{
+  text-align: center;
+}
 .mainContent{
   display: flex;
   justify-content: space-around;
@@ -101,4 +121,56 @@ header{
   width: 60%;
   line-height: 2;
   margin: 0 auto;
+}
+
+/* profile css**/
+.userInfo{
+  max-width: 270px;
+  width: 100%;
+  background: darkgray;
+  padding: 20px 0;
+}
+#profileAvatar{
+  border-radius: 50%;
+  width: 20vw;
+  height: 20vw;
+}
+.profileCont{
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 1000px;
+}
+#userTweets{
+  width: 100%;
+  padding-left:20px;
+  padding-top: 20px;
+}
+#userTweets .tweetHeader{
+  justify-content: flex-start;
+  width: 30%;
+}
+.userTweet {
+  display: flex;
+  align-items: center;
+}
+p.tweetBody {
+  border-left: 1px solid #cecece;
+  width: 65%;
+  margin-left: 5%;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+.headerDate{
+  color: gray;
+  font-size:10px;
+}
+.userInfo .info p{
+  padding-left: 20px;
+}
+.userInfo .info h2{
+  text-align: center;
 }
