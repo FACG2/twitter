@@ -12,7 +12,8 @@ if (addTweetForm) {
   addTweetForm.addEventListener('submit', function (event) {
     event.preventDefault();
     var tweetText = event.target.firstElementChild.value;
-        // expected response = { status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!'}
+        // expected response = { status : ' ' , ownerName;
+:' ',tweetText:'',avatarUrl: 'http://someLinke!'}
     apiReq('/createtweet', 'POST', function (err, data) {
       if (err) {
         errorHandler('addTweet', err);

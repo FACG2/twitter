@@ -1,7 +1,9 @@
 const fs = require('fs');
-// const cookie = require('cookie');
+const cookie = require('cookie');
 const jwt = require('jsonwebtoken');
 const validation = require('./validation.js');
+const {insertTweet} = require('./db_functions.js');
+
 function genaricHandler (req, res) {
   let url = req.url;
   if (url === '/') {
@@ -77,6 +79,32 @@ function signupHandler (req, res) {
         res.writeHead(302, {'Location': '/home', 'Set-Cookie': `token=${token};user=${result.userRes};avatar=${result.avatar}`});
         res.end();
       }
+    });
+  });
+}
+function createtweet (req, res) {
+  const token = cookie.parse(req.cookie).token;
+
+  jwt.verify(token, 'twitter shhh', function (err, user) {
+    let username = user.userName;
+    let tweetText = '';
+    req.on('data', (err, tweTxt) => {
+      tweetText += tweTxt;
+    });
+    req.on('end', () => {
+      // should get response in this format ={ status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!' ,errorMsg:''}
+      insertTweet(username, tweetText, (err, status) => {
+        if (err) {
+          let msg = {};
+          msg.status = false;
+          msg.errorMessage = status.errorMsg;
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.end(JSON.parse(msg));
+        } else {
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.end(JSON.parse(status));
+        }
+      });
     });
   });
 }
