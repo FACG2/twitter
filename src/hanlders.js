@@ -3,7 +3,7 @@ const cookie = require('cookie');
 const jwt = require('jsonwebtoken');
 const dbfunctions = require('./db_functions.js');
 const validation = require('./validation.js');
-const {insertTweet, getAllTweetFromDB} = require('./db_functions.js');
+const {insertTweet, getAllTweetFromDB, getUser} = require('./db_functions.js');
 
 function genaricHandler (req, res) {
   let url = req.url;
@@ -166,6 +166,33 @@ function getalltweets (req, res) {
     }
   });
 }
+function getuserData (req, res) {
+  const token = cookie.parse(req.cookie).token;
+
+  jwt.verify(token, 'twitter shhh', function (err, user) {
+    if (err) {
+      res.writeHead(401, {'Content-Type': 'text/html'});
+      res.end('<center><h2>Un authorized request </h2></center>');
+    } else {
+      getUser(user.name, (err, userDetails) => {
+        // { status: false , errorMsg:'' , username:'' , avatar:''}
+        if (err) {
+          res.writeHead(404, {'Content-Type': 'application/json'});
+          res.end(JSON.stringify({status: false, errorMsg: err}));
+        } else {
+          const user = {
+            username: userDetails.username,
+            avatar: userDetails.avatar,
+            status: true,
+            errorMsg: ''
+          };
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.end(JSON.stringify(user));
+        }
+      });
+    }
+  });
+}
 module.exports = {
   genaricHandler,
   loginHandler,
@@ -173,5 +200,6 @@ module.exports = {
   getProfileInfoHandler,
   getProfileTweetsHandler,
   createtweet,
+  getuserData,
   getalltweets
 };

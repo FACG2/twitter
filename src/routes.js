@@ -23,6 +23,10 @@ module.exports = (req, res) => {
     }
   } else if (url === '/createtweet') {
     handler.createtweet(req, res);
+  } else if (url === '/getalltweets') {
+    handler.getalltweets(req, res);
+  } else if (url === '/getuserData') {
+    handler.getuserData(req, res);
   } else {
     handler.genaricHandler(req, res);
   }

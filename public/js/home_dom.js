@@ -38,14 +38,19 @@ if (document.cookie && document.cookie.payload.username !== undefined) {
   window.addEventListener('onload', function (e) {
     e.preventDefault();
     // render the nav bar
-    // expected response = { username : ' ' , avatarUrl: 'http://someLinke!'}
+    // expected response = {status:'' , errorMsg:'', username : ' ' , avatar: 'http://someLinke!'}
     apiReq('/getuserData', 'GET', (err, res) => {
       if (err) {
         errorHandler(err, 'nav');
       } else {
         res = JSON.parse(res);
-        navElements.username.textContent = res.username;
-        navElements.pAvatar.src = res.avatarUrl;
+        if (res.status) {
+          errorHandler(JSON.parse(res).err, JSON.parse(res).errorMsg);
+        } else {
+          res = JSON.parse(res);
+          navElements.username.textContent = res.username;
+          navElements.pAvatar.src = res.avatar;
+        }
       }
     });
   });
@@ -85,20 +90,14 @@ function renderTweet (response) {
 }
 
 window.addEventListener('onload', (e) => {
-  // { tweetNumber : 10 , tweets:[t1:{tweetText:' ' , ownerName:'' , avatarUrl},t2 ,t3]}
-  // {
-  //     username: 'kelhelou',
-  //     avatar: 'http://www.google.com',
-  //     context: 'no context',
-  //     date: 2017-08-21T21:00:00.000Z },
-
+  // {[{context:' ' , username:'' , avatar:'link'} ,,, {}]}
   e.preventDefault();
-  apiReq('/getalltweets', 'GET', (err, res) => {
+  apiReq('/getalltweets', 'GET', (err, tweets) => {
     if (err) {
       errorHandler(err, 'getalltweets');
     } else {
-      res = JSON.parse(res);
-      res.tweets.forEach(function (tweet) {
+      tweets = JSON.parse(tweets);
+      tweets.forEach(function (tweet) {
         renderTweet(tweet);
       });
     }

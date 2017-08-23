@@ -33,7 +33,7 @@ const addUser = (obj, cb) => {// eslint-disable-line
 // errorMsg
 // { status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!' ,errorMsg:''}
  const insertTweet = (userName, tweetText, cb) => {
-   getUserId(userName, (err, user) => {
+   getUser(userName, (err, user) => {
      if (err) {
        cb(err);
      } else {
@@ -57,7 +57,7 @@ const addUser = (obj, cb) => {// eslint-disable-line
      }
    });
  };
- const getUserId = (username, cb) => {
+ const getUser = (username, cb) => {
    const sql = {
      text: 'SELECT * from users where username= $1',
      values: [username]
@@ -114,5 +114,6 @@ const profileTweets = (username, cb) => {
    profileInfo,
    profileTweets,
    insertTweet,
+   getUser,
    getAllTweetFromDB
  };
