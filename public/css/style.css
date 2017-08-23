@@ -22,6 +22,26 @@ body{
 header{
   background: rgba(255,255,255,0.6);
 }
+nav .container{
+  display: flex;
+  justify-content: space-around
+}
+#userNav{
+  display: flex;
+  align-items: center;
+}
+.logout{
+  color: #1da1f2;
+  cursor: pointer;
+}
+#userNav img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.navUser{
+  text-align: center;
+}
 .mainContent{
   display: flex;
   justify-content: space-around;
