@@ -20,7 +20,9 @@ function genaricHandler (req, res) {
     js: 'application/javascript',
     ico: 'image/x-icon',
     jpg: 'image/jpeg',
-    jpeg: 'image/jpeg'
+    jpeg: 'image/jpeg',
+    png: 'image/png'
+
   };
   fs.readFile(`${__dirname}/../public/${url}`, (err, data) => {
     if (err) {
