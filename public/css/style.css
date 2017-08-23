@@ -22,6 +22,16 @@ body{
 header{
   background: rgba(255,255,255,0.6);
 }
+.wrongInput{
+  border-color:red;
+}
+.errNote{
+  text-align: center;
+  color: red;
+}
+input:disabled {
+  background: gray !important  ;
+}
 nav .container{
   display: flex;
   justify-content: space-around
