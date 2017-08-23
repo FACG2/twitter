@@ -1,4 +1,5 @@
 const dbfunctions = require('./db_functions.js');
+const { createHash } = require('crypto');
 
 function loginValidation (username, password, cb) {
   var loginRet = {msg: '', userRes: ''};
@@ -6,7 +7,8 @@ function loginValidation (username, password, cb) {
     loginRet.msg = 'username is empty or password is less than 6 char';
     cb(null, loginRet);
   } else {
-    dbfunctions.loginQuery(username, password, (err, ress) => {
+    const hashedPassword = createHash('sha256').update(password).digest('hex');
+    dbfunctions.loginQuery(username, hashedPassword, (err, ress) => {
       if (err) {
         loginRet.msg = 'Database connection error';
         cb(err, loginRet);
@@ -14,12 +16,21 @@ function loginValidation (username, password, cb) {
         loginRet.msg = 'username is not  register';
         cb(null, loginRet);
       } else {
-        loginRet.userRes = username;
+        loginRet.userRes = ress[0].username;
+        loginRet.avatar = ress[0].avatar;
         cb(null, loginRet);
       }
     });
   }
 }
+
+// loginValidation('walid', '123456', (err, res) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(res);
+//   }
+// });
 
 function signupValidation (signupData, cb) {
   let signupRet = {msg: '', userRes: ''};
@@ -35,12 +46,20 @@ function signupValidation (signupData, cb) {
         signupRet.msg = 'invalid register';
         cb(err, signupRet);
       } else if (ress.length === 0) {
+        const hashedPassword = createHash('sha256').update(signupData.password).digest('hex');
+        signupData.password = hashedPassword;
         signupRet.userRes = signupData.username;
+        if (signupData.gender === 'F') {
+          signupData.avatar = 'https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_beanie_girl-512.png';
+        } else {
+          signupData.avatar = 'https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_handsome_guy-512.png';
+        }
         dbfunctions.addUser(signupData, (err2, ress2) => {
           if (err2) {
             signupRet.msg = 'Database connection error';
             cb(err2, signupRet);
           } else {
+            signupRet.avatar = signupData.avatar;
             cb(null, signupRet);
           }
         });
@@ -52,6 +71,14 @@ function signupValidation (signupData, cb) {
   }
 }
 
+var obj = {username: 'elias', password: '123456', cpassword: '123456', gender: 'M'};
+signupValidation(obj, (err, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res);
+  }
+});
 module.exports = {
   loginValidation,
   signupValidation
