@@ -20,7 +20,7 @@
       if (err) {
         document.getElementsByClassName('profileCont')[0].innerHTML = '<h1>Connection Error!</h1>';
       } else if (data === '[]') {
-        document.getElementById('userTweets').innerHTML = '<h2>' + window.location.pathname.split("/")[2] + ' has no Tweets!</h2>';
+        document.getElementById('userTweets').innerHTML = '<h2>' + window.location.pathname.split('/')[2] + ' has no Tweets!</h2>';
       } else {
         var userstweets = JSON.parse(data);
         document.getElementById('userTweets').innerHTML = generateTweetsDivs(usersInfo.avatar, usersInfo.username, userstweets);
