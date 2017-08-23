@@ -1,4 +1,4 @@
-Home Page ==>
+**Home Page ==>**
   - login form
     - username
     - password
@@ -7,7 +7,7 @@ Home Page ==>
     - gender
     - password
     - confirm password
-All tweets Page ==>
+**All tweets Page ==>**
   - navigation bar
     - Profile
     - username + picture
@@ -17,12 +17,14 @@ All tweets Page ==>
     - username
     - userpicture
     - optional(like , comment)
-Profile Page ==>
+**Profile Page ==>**
   - username
   - user tweets
   - avatar
-User dashboard ==>
+**User dashboard ==>**
  - change username
  - change picture
  - change password
  - delete user
+
+[Back](https://github.com/FACG2/twitter/blob/master/README.md)
