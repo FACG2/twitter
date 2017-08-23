@@ -15,11 +15,13 @@ function genaricHandler (req, res) {
     css: 'text/css',
     html: 'text/html',
     js: 'application/javascript',
-    ico: 'image/x-icon'
+    ico: 'image/x-icon',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg'
   };
   fs.readFile(`${__dirname}/../public/${url}`, (err, data) => {
     if (err) {
-      fs.readFile(`${__dirname}/../public/404.html`,'utf-8', (err2, data2) => {
+      fs.readFile(`${__dirname}/../public/404.html`, 'utf-8', (err2, data2) => {
         if (err2) {
           res.writeHead(500, {'Content-Type': 'text/html'});
           res.end('<h1>500 , Server Error</h1>');
