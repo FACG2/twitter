@@ -1,18 +1,161 @@
-*{
+* {
   padding: 0;
   margin: 0;
 }
-.container{
+
+.container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1200px;*/
   margin: 0 auto;
 }
-.mainContent{
-  display: flex;
-  background: gray;
+
+.maincontent{
+  background-color: red;
 }
-.mainContent>section{
-  width:45%;
-  margin: 2.5%;
-  background: white;
+/******** BODY IMAGE ***************/
+
+body{
+  background: url(../background.jpg) no-repeat -300px -800px;
+}
+
+/******** END BODY IMAGE **************/
+/************ START HEADER CSS **************/
+header {
+    height:70px;
+    background:#fff;
+    border:1px solid #CCC;
+}
+
+a {
+  text-decoration: none;
+
+}
+.branding img {
+  float: left;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 1px;
+}
+
+.branding h3 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+  color: #1da1f2;
+  text-decoration: none;
+  padding-top: 8px;
+}
+
+#userNav h3{
+
+  float: right;
+  top: 18px;
+  left: 10px;
+  color: #1da1f2;
+  text-decoration: none;
+  margin-right: 50px;
+  margin-bottom: 15px;
+
+}
+/************ END HEADER CSS ************/
+/******** START  LOGIN FORM CSS ********/
+
+#loginSection{
+  float: right;
+  background-color: yellow;
+  padding: 15px;
+  width: 300;
+  margin-right: 200px;
+  margin-top: 50px;
+  max-height: 500px;
+
+}
+
+form#loginForm button{
+  height: 32px;
+  background:#FFFFFF;
+  /*border:5px;*/
+  border-color: #1da1f2;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #1da1f2;
+  float: right;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+form#loginForm button:hover{
+  background-color: #eaf5fd;
+}
+
+/*#newsletter form {
+  float: right;
+  margin-top: 15px;
+}*/
+section#loginSection form input, section#signupSection form input {
+width: 90%;
+padding: 5px;
+margin-bottom: 5px;
+
+}
+
+h3#loginh3{
+  font-family: monospace ,sans-serif;
+  margin-bottom: 5px;
+}
+
+/******** END  LOGIN FORM CSS ********/
+
+/********* START SIGNUP FORM CSS *****/
+
+#signupSection{
+  float: left;
+  padding: 15px;
+  width: 350px;
+  max-height: 500px;
+  margin-left: 150px;
+  margin-right: 50px;
+  margin-top: 50px;
+  border: 3px;
+}
+
+form#signupForm button{
+  height: 32px;
+  background:#1da1f2;
+  border:0;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #ffffff;
+  float: right;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/*#newsletter form {
+  float: right;
+  margin-top: 15px;
+}*/
+
+h3#signuph3{
+  font-family: monospace ,sans-serif;
+  margin-bottom: 10px;
+}
+
+form#signupForm button:hover{
+  background-color: #006dbf;
+}
+
+hr{
+  color: #f4f6f9;
+  margin-bottom: 5px;
+}
+/********* END SIGNUP FORM CSS *******/
+
+section#loginSection, section#signupSection{
+  max-height: 500px;
+  max-width: 400px;
+  padding: 20px;
+  position: relative;
 }
