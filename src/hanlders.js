@@ -205,7 +205,7 @@ function checkToken (req, res, handlerEx) {
       res.writeHead(401, {'Content-Type': 'text/html'});
       res.end('<center><h2>Un authorized request </h2></center>');
     } else {
-      handlerEx(req,res);
+      handlerEx(req, res);
     }
   });
 }

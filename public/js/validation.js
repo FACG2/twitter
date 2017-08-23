@@ -57,7 +57,7 @@ var validation = {
 })();
 function errorMessages (messages) {
   return messages.reduce(function (acc, message) {
-    if (message !=='') {
+    if (message !== '') {
       acc += ', ' + message;
     }
     return acc;
