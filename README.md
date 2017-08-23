@@ -17,8 +17,7 @@ Also the user will be able to write, delete and edits his own tweets and view ot
  4. Username is visible on each page of the site after logging in
  5. Any user-submitted content should be labelled with the authors username
  6. There should be protected routes and unprotected routes that depend on the user having a cookie or not (or what level of access they have).
- 7
-
+ 
 
 ### User story:
 [Here](https://github.com/FACG2/twitter/blob/master/documentation/user_stories.md)
