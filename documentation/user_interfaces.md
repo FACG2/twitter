@@ -7,6 +7,7 @@
     - gender
     - password
     - confirm password
+    
 **All tweets Page ==>**
   - navigation bar
     - Profile
@@ -17,10 +18,12 @@
     - username
     - userpicture
     - optional(like , comment)
+
 **Profile Page ==>**
   - username
   - user tweets
   - avatar
+
 **User dashboard ==>**
  - change username
  - change picture
