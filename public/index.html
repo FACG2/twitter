@@ -15,8 +15,7 @@
     <header>
       <nav>
         <div class="container">
-            <img src="./img/logo.png" alt="" style="width:50px;height:50px;">
-          <a class="logo" href="#">Twitter</a>
+          <a class="logo" href="#"><img src="img/logo.png" alt="Twitter" style="width:50px;height:50px;"></a>
           <div id="userNav">
             <!-- avatar image + userNAme From the Cookie -->
           </div>
@@ -30,7 +29,7 @@
         <div class="errNote"></div>
         <form id="loginForm" action="/login" method="post">
           <input type="text" name="username" value="" placeholder="User Name ...." required>
-          <input type="text" name="password" value="" placeholder="Password ...." required>
+          <input type="password" name="password" value="" placeholder="Password ...." required>
           <input type="submit" name="submit" value="Login">
         </form>
       </section>
@@ -39,12 +38,12 @@
         <div class="errNote"></div>
         <form id="signupForm" action="/signup" method="post">
           <input type="text" name="username" value="" placeholder="User Name ...." required>
-          <label>Gender :
+          <label id='genderRadio'>Gender :
             <input type="radio" name="gender" value="male" checked> Male<br>
             <input type="radio" name="gender" value="female"> Female<br>
           </label>
-          <input type="text" name="password" value="" placeholder="Password ...." required>
-          <input type="text" name="confirmPassword" value="" placeholder="Confirm password ...." required>
+          <input type="password" name="password" value="" placeholder="Password ...." required>
+          <input type="password" name="confirmPassword" value="" placeholder="Confirm password ...." required>
           <input id="signupSub" type="submit" name="submit" value="Sign up">
         </form>
       </section>
