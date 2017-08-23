@@ -1,10 +1,9 @@
 (function () {
-
   /* Add username and avatar to nav */
   var cookies = document.cookie.split(/=|;/);
   if (cookies.includes('user') || cookies.includes(' avatar')) {
-    var user = cookies[cookies.indexOf(' user') + 1 ];
-    var avatar = cookies[cookies.indexOf(' avatar') + 1 ];
+    var user = cookies[cookies.indexOf(' user') + 1];
+    var avatar = cookies[cookies.indexOf(' avatar') + 1];
     document.getElementById('userNav').innerHTML = '<p id="logout">Log out</p>' +
                                           '<div class="navUser">' +
                                             '<a href="/users/' + user + '"><img src="' + avatar + '" alt="' + user + '"></a>' +
