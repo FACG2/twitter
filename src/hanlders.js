@@ -1,13 +1,15 @@
 const fs = require('fs');
-// const cookie = require('cookie');
+const cookie = require('cookie');
 const jwt = require('jsonwebtoken');
 const dbfunctions = require('./db_functions.js');
 const validation = require('./validation.js');
+const {insertTweet, getAllTweetFromDB} = require('./db_functions.js');
+
 function genaricHandler (req, res) {
   let url = req.url;
   if (url === '/') {
     url = 'index.html';
-  } else if (url == '/home') {
+  } else if (url === '/home') {
     url = 'home.html';
   }
   let parts = url.split('.');
@@ -93,7 +95,6 @@ function signupHandler (req, res) {
     });
   });
 }
-
 function getProfileInfoHandler (req, res, username) {
   dbfunctions.profileInfo(username, (err, ress) => {
     if (err) {
@@ -119,10 +120,58 @@ function getProfileTweetsHandler (req, res, username) {
   });
 }
 
+function createtweet (req, res) {
+  const token = cookie.parse(req.cookie).token;
+  jwt.verify(token, 'twitter shhh', function (err, user) {
+    if (err) {
+      res.writeHead(401, {'Content-Type': 'text/html'});
+      res.end('<center><h2>Un authorized request </h2></center>');
+    }
+    let username = user.userName;
+    let tweetText = '';
+    req.on('data', (err, tweTxt) => {
+      if (err) {
+        res.writeHead(404, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({status: false, errorMsg: err}));
+      } else {
+        tweetText += tweTxt;
+      }
+    });
+    req.on('end', () => {
+      // should get response in this format ={ status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!' ,errorMsg:''}
+      insertTweet(username, tweetText, (err, resObj) => {
+        if (err) {
+          let obj = {};
+          obj.status = false;
+          obj.errorMessage = err;
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.end(JSON.parse(obj));
+        } else {
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.end(JSON.parse(resObj));
+        }
+      });
+    });
+  });
+}
+function getalltweets (req, res) {
+  getAllTweetFromDB((err, tweets) => {
+    if (err) {
+      res.writeHead(404, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify({status: false, errorMsg: err}));
+    } else {
+      // { tweetNumber : 10 , tweets:[t1:{tweetText:' ' , ownerName:'' , avatarUrl},t2 ,t3]}
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end(JSON.stringify(tweets));
+    }
+  });
+}
 module.exports = {
   genaricHandler,
   loginHandler,
   signupHandler,
   getProfileInfoHandler,
-  getProfileTweetsHandler
+  getProfileTweetsHandler,
+  createtweet,
+  getalltweets
 };

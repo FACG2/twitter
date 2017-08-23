@@ -21,12 +21,16 @@ module.exports = (req, res) => {
       req.url = req.url.replace('/users/', '/');// /users/css/style.css
       handler.genaricHandler(req, res);
     }
+  } else if (url === '/createtweet') {
+    handler.createtweet(req, res);
   } else {
     handler.genaricHandler(req, res);
   }
 };
 
 /*
+{ status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!'}
+/createtweet
 'GET /' ==>homepage - login
 'POST /login' ==> login
 'POST /signup' ==> Signup
