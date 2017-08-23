@@ -14,8 +14,8 @@ module.exports = (req, res) => {
     } else if (urlParts[3] === 'tweets') { // get user tweets
       handler.getProfileTweetsHandler(req, res, urlParts[2]);
     } else if (urlParts.length === 3) { // get profile page
-      req.url = 'profile.html';
-      handler.genaricHandler(req, res);
+      req.url = 'profile.html'; // only for logged in users
+      handler.checkToken(req, res, handler.genaricHandler);
     } else {
       req.url = req.url.replace('/users/', '/');// /users/css/style.css
       handler.genaricHandler(req, res);
@@ -27,6 +27,8 @@ module.exports = (req, res) => {
     handler.getalltweets(req, res);
   } else if (url === '/getuserData') {
     handler.getuserData(req, res);
+  } else if (url === '/home') { // only for logged in users
+    handler.checkToken(req, res, handler.genaricHandler);
   } else {
     handler.genaricHandler(req, res);
   }

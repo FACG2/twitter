@@ -166,7 +166,7 @@ function getalltweets (req, res) {
   });
 }
 function getuserData (req, res) {
-  const token = cookie.parse(req.cookie).token;
+  const token = cookie.parse(req.headers.cookie).token;
 
   jwt.verify(token, 'twitter shhh', function (err, user) {
     if (err) {
@@ -192,6 +192,18 @@ function getuserData (req, res) {
     }
   });
 }
+
+function checkToken (req, res, handlerEx) {
+  const token = cookie.parse(req.headers.cookie).token;
+  jwt.verify(token, 'twitter shhh', function (err, user) {
+    if (err) {
+      res.writeHead(401, {'Content-Type': 'text/html'});
+      res.end('<center><h2>Un authorized request </h2></center>');
+    } else {
+      handlerEx(req, res);
+    }
+  });
+}
 module.exports = {
   genaricHandler,
   loginHandler,
@@ -200,5 +212,6 @@ module.exports = {
   getProfileTweetsHandler,
   createtweet,
   getuserData,
-  getalltweets
+  getalltweets,
+  checkToken
 };
