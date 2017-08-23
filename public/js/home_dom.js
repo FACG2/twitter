@@ -12,13 +12,13 @@ if (addTweetForm) {
   addTweetForm.addEventListener('submit', function (event) {
     event.preventDefault();
     var tweetText = event.target.firstElementChild.value;
-        // expected response = { status : ' ' , userName:' ',avatarUrl: 'http://someLinke!'}
+        // expected response = { status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!'}
     apiReq('/createtweet', 'POST', function (err, data) {
       if (err) {
         errorHandler('addTweet', err);
       } else {
         if (JSON.parse(data).status) {
-          renderTweets(JSON.parse(data));
+          renderTweet(JSON.parse(data));
         } else {
           errorHandler('addTweet', 'Cannot add tweet Right now');
         }
@@ -27,11 +27,12 @@ if (addTweetForm) {
   });
 }
 // just to be more specific ,we check if there is acookie and there is a username in the payload
-if (document.cookie.payload.username !== undefined) {
+if (document.cookie && document.cookie.payload.username !== undefined) {
   navElements.username.textContent = cookie.payload.username;
   navElements.pAvatar.src = cookie.payload.avatarUrl;
 } else {
   window.addEventListener('onload', function (e) {
+    e.preventDefault();
     // render the nav bar
     // expected response = { username : ' ' , avatarUrl: 'http://someLinke!'}
     apiReq('/getuserData', 'GET', (err, res) => {
@@ -52,16 +53,18 @@ function errorHandler (err, location) {
     case 'addTweet':
       document.getElementById('tweetInput').textContent = err;
       break;
+    case 'getalltweets':
+      document.getElementsByClassName('recentTweets')[0].textContent = err;
+      break;
     default:
       alert(err);
   }
 }
 
-function renderTweets (response) {
+function renderTweet (response) {
 // profile avatar , user name(tweet owner) , singleTweet = tweetBody
-
-  var tweetText = document.getElementById('tweetText').value;
-  var tweetOwner = response.userName;
+  var tweetText = response.tweetText;
+  var tweetOwner = response.ownerName;
   var tweetAvataUrl = response.avatarUrl;
 
   var tweetList = document.querySelector('.recentTweets');
@@ -76,3 +79,18 @@ function renderTweets (response) {
   tweetBody.textContent = tweetText;
   tweetList.appendChild(tweetBody);
 }
+
+window.addEventListener('onload', (e) => {
+  // { tweetNumber : 10 , tweets:[t1:{tweetText:' ' , ownerName:'' , avatarUrl},t2 ,t3]}
+  e.preventDefault();
+  apiReq('/getalltweets', 'GET', (err, res) => {
+    if (err) {
+      errorHandler(err, 'getalltweets');
+    } else {
+      res = JSON.parse(res);
+      res.tweets.forEach(function (tweet) {
+        renderTweet(tweet);
+      });
+    }
+  });
+});
