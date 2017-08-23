@@ -47,7 +47,7 @@ function loginHandler (req, res) {
         res.end(result.msg);
       } else {
         let token = jwt.sign({userName: result.userRes}, 'twitter shhh');
-        res.writeHead(302, {'Location': '/home', 'Set-Cookie': `token=${token}`});
+        res.writeHead(302, {'Location': '/home', 'Set-Cookie': `token=${token};user=${result.userRes};avatar=${result.avatar}`});
         res.end();
       }
     });
@@ -74,7 +74,7 @@ function signupHandler (req, res) {
         res.end(result.msg);
       } else {
         var token = jwt.sign({userName: result.userRes}, 'twitter shhh');
-        res.writeHead(302, {'Location': '/home', 'Set-Cookie': `token=${token}`});
+        res.writeHead(302, {'Location': '/home', 'Set-Cookie': `token=${token};user=${result.userRes};avatar=${result.avatar}`});
         res.end();
       }
     });
