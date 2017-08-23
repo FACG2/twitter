@@ -1,25 +1,49 @@
 // recevedObject when user request Home{}
-//
+//cookie { payload:{ username : ' ' , avatarUrl : ' '}}
+var navElements = {
+  navElement: document.getElementById('userNav'),
+  username: document.createElement('h4'),
+  pAvatar: document.createElement('img')
+};
 var addTweetForm = document.getElementById('addTweetForm');
 
 if (addTweetForm) {
   addTweetForm.addEventListener('submit', function (event) {
     event.preventDefault();
     var tweetText = event.target.firstElementChild.value;
-    addTweet(tweetText, function (data) {
+        // expected response = { status : ' ' , userName:' ',avatarUrl: 'http://someLinke!'}
+    apiReq('/createtweet', 'POST', function (err, data) {
       if (err) {
         errorHandler('addTweet', err);
       } else {
-        if (data.addTweet.status) {
-          renderTweets(data);
+        if (JSON.parse(data).status) {
+          renderTweets(JSON.parse(data));
         } else {
           errorHandler('addTweet', 'Cannot add tweet Right now');
         }
       }
+    }, tweetText);
+  });
+}
+// just to be more specific ,we check if there is acookie and there is a username in the payload
+if (document.cookie.payload.username !== undefined) {
+  navElements.username.textContent = cookie.payload.username;
+  navElements.pAvatar.src = cookie.payload.avatarUrl;
+} else {
+  window.addEventListener('onload', function (e) {
+    // render the nav bar
+    // expected response = { username : ' ' , avatarUrl: 'http://someLinke!'}
+    apiReq('/getuserData', 'GET', (err, res) => {
+      if (err) {
+        errorHandler(err, 'nav');
+      } else {
+        res = JSON.parse(res);
+        navElements.username.textContent = res.username;
+        navElements.pAvatar.src = res.avatarUrl;
+      }
     });
   });
 }
-
 function errorHandler (err, location) {
   switch (location) {
     case 'addTweet':
@@ -27,29 +51,25 @@ function errorHandler (err, location) {
       break;
     default:
       alert(err);
-
   }
 }
+
 function renderTweets (response) {
 // profile avatar , user name(tweet owner) , singleTweet = tweetBody
-  if (response.status) {
-    var tweetText = document.getElementById('tweetText').value;
-    var tweetOwner = response.userName;
-    var tweetAvataUrl = response.avatarUrl;
 
-    var tweetList = document.querySelector('.recentTweets');
+  var tweetText = document.getElementById('tweetText').value;
+  var tweetOwner = response.userName;
+  var tweetAvataUrl = response.avatarUrl;
 
-    var avatar = document.querySelector('.tweetHeader img')[0];
-    avatar.src = tweetAvataUrl;
-    tweetList.appendChild(avatar);
-    var tweeterName = document.querySelector('.tweetHeader h6')[0];
-    tweeterName.textContent = tweetOwner;
-    tweetList.appendChild(tweeterName);
-    var tweetBody = document.querySelector('.singleTweet p')[0];
-    tweetBody.textContent = tweetText;
-    tweetList.appendChild(tweetBody);
-  } else {
-    errorHandler(response.error + response.message, 'addTweet');
-  }
+  var tweetList = document.querySelector('.recentTweets');
 
+  var avatar = document.querySelector('.tweetHeader img')[0];
+  avatar.src = tweetAvataUrl;
+  tweetList.appendChild(avatar);
+  var tweeterName = document.querySelector('.tweetHeader h6')[0];
+  tweeterName.textContent = tweetOwner;
+  tweetList.appendChild(tweeterName);
+  var tweetBody = document.querySelector('.singleTweet p')[0];
+  tweetBody.textContent = tweetText;
+  tweetList.appendChild(tweetBody);
 }
