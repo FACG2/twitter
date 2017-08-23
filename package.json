@@ -24,8 +24,9 @@
   },
   "homepage": "https://github.com/FACG2/twitter#readme",
   "devDependencies": {
-    "pre-commit": "^1.2.2",
     "nodemon": "^1.11.0",
+    "pre-commit": "^1.2.2",
+    "semistandard": "^11.0.0",
     "shot": "^3.4.2",
     "tape": "^4.8.0"
   },
