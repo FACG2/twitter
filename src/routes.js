@@ -7,12 +7,16 @@ module.exports = (req, res) => {
     handler.loginHandler(req, res);
   } else if (url === '/signup' && method === 'POST') {
     handler.signupHandler(req, res);
+  } else if (url === '/createtweet') {
+    handler.createtweet(req, res);
   } else {
     handler.genaricHandler(req, res);
   }
 };
 
 /*
+{ status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!'}
+/createtweet
 'GET /' ==>homepage - login
 'POST /login' ==> login
 'POST /signup' ==> Signup

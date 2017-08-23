@@ -29,9 +29,65 @@ const addUser = (obj, cb) => {// eslint-disable-line
     }
   });
 };
+// errorMsg
+// { status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!' ,errorMsg:''}
+ const insertTweet = (userName, tweetText, cb) => {
+   getUserId(userName, (err, user) => {
+     if (err) {
+       cb(err);
+     } else {
+       const sql = {
+         text: 'INSERT INTO tweets (owner_id , context ,date) VALUES ($1 , $2 ,to_timestamp($3))',
+         values: [ user.id, tweetText, Date.now() / 1000 ]
+       };
+       dbConnection.query(sql, (err, res) => {
+         if (err) {
+           cb(err);
+         } else {
+           const tweetDetails = {};
+           tweetDetails.status = true;
+           tweetDetails.ownerName = user.username;
+           tweetDetails.tweetText = tweetText;
+           tweetDetails.avatarUrl = user.avatar;
+           tweetDetails.errorMsg = '';
+           cb(null, tweetDetails);
+         }
+       });
+     }
+   });
+ };
+ const getUserId = (username, cb) => {
+   const sql = {
+     text: 'SELECT * from users where username= $1',
+     values: [username]
+   };
+   dbConnection.query(sql, (err, user) => {
+     if (err) {
+       cb(err);
+     } else {
+       cb(null, user.rows[0]);
+     }
+   });
+ };
+ // should return { tweets:[t1:{tweetText:' ' , ownerName:'' , avatarUrl},t2 ,t3]}
+
+ const getAllTweetFromDB = (cb) => {
+   const sql = {
+     text: 'SELECT username ,avatar ,context ,date FROM tweets join users on users.id=tweets.owner_id LIMIT 10'
+   };
+   dbConnection.query(sql, (err, tweets) => {
+     if (err) {
+       cb(err);
+     } else {
+       cb(null, tweets.rows);
+     }
+   });
+ };
 
  module.exports = {
    loginQuery,
    addUser,
-   searchUser
+   searchUser,
+   insertTweet,
+   getAllTweetFromDB
  };
