@@ -1,7 +1,7 @@
 var validation = {
-  email: true,
-  password: true,
-  confirmPassword: true
+  user: false,
+  password: false,
+  confirmPassword: false
 };
 (function () {
   var sigupFormInputs = document.querySelectorAll('#signupSection input');
@@ -11,16 +11,18 @@ var validation = {
   var submitSignup = document.querySelector('#signupSub');
   var signupNoteDiv = document.getElementsByClassName('errNote')[1];
   var validationErrors = {username: '', password: '', confirmPassword: ''};
+  submitSignup.disabled = !(isFormValid(validation));
   usernameInput.addEventListener('focusout', function () {
     if (this.value.length < 2) {
       this.classList.add('wrongInput');
       validationErrors.username = 'username is invalid';
-      validation.email = false;
+      validation.user = false;
     } else {
       this.classList.remove('wrongInput');
-      validation.email = true;
+      validation.user = true;
       validationErrors.username = '';
     }
+    signupNoteDiv.textContent = errorMessages(Object.values(validationErrors));
     submitSignup.disabled = !(isFormValid(validation));
   });
 
@@ -34,6 +36,7 @@ var validation = {
       validation.password = true;
       validationErrors.password = '';
     }
+    signupNoteDiv.textContent = errorMessages(Object.values(validationErrors));
     submitSignup.disabled = !(isFormValid(validation));
   });
 
@@ -47,13 +50,19 @@ var validation = {
       validation.confirmPassword = true;
       validationErrors.confirmPassword = '';
     }
+    signupNoteDiv.textContent = errorMessages(Object.values(validationErrors));
     submitSignup.disabled = !(isFormValid(validation));
   });
-  signupNoteDiv.textContent = Object.values(validationErrors).reduce(function (acc, message) {
-    acc += message;
-  }, '');
-  // enable or disable submit button of signup
+  signupNoteDiv.textContent = errorMessages(Object.values(validationErrors));
 })();
+function errorMessages (messages) {
+  return messages.reduce(function (acc, message) {
+    if (message !=='') {
+      acc += ', ' + message;
+    }
+    return acc;
+  }, '');
+}
 function isFormValid (sourceOfTrue) {
   return Object.values(sourceOfTrue).reduce(function (acc, source) {
     acc = source ? acc : false;
