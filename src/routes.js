@@ -21,6 +21,7 @@ module.exports = (req, res) => {
       handler.genaricHandler(req, res);
     }
   } else if (url === '/createtweet') {
+    console.log('createtweet handler');
     handler.createtweet(req, res);
   } else if (url === '/getalltweets') {
     handler.getalltweets(req, res);

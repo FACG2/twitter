@@ -73,10 +73,10 @@ function errorHandler (err, location) {
 
 function renderTweet (response) {
 // profile avatar , user name(tweet owner) , singleTweet = tweetBody
-  console.log(response);
-  var tweetText = response.context;
-  var tweetOwner = response.username;
-  var tweetAvataUrl = response.avatar;
+  console.log(response.context || response.tweetText);
+  var tweetText = response.context || response.tweetText;
+  var tweetOwner = response.username || response.ownerName;
+  var tweetAvataUrl = response.avatar || response.avatarUrl;
 
   var tweetList = document.getElementsByClassName('recentTweets')[0];
   var tweet = document.createElement('div');
