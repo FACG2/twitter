@@ -1,7 +1,7 @@
 (function () {
   apiReq(window.location.pathname+'/getData','GET', function (err, data) {// eslint-disable-line
     if (err || data === '') {
-      document.getElementsByClassName('mainContent')[0].innerHTML = '<h1>Connection Error!</h1>';
+      document.getElementsByClassName('profileCont')[0].innerHTML = '<h1>Connection Error!</h1>';
     } else {
       var usersInfo = JSON.parse(data);
       document.querySelector('.info h2').textContent = usersInfo.username;
@@ -17,11 +17,10 @@
 
     /* List tweets */
     apiReq(window.location.pathname+'/tweets','GET', function (err, data) {// eslint-disable-line
-      console.log(data);
       if (err) {
-        document.getElementsByClassName('mainContent')[0].innerHTML = '<h1>Connection Error!</h1>';
+        document.getElementsByClassName('profileCont')[0].innerHTML = '<h1>Connection Error!</h1>';
       } else if (data === '[]') {
-        document.getElementById('userTweets').innerHTML = '<h2>' + window.location.pathname.split('/')[2] + ' has no Tweets!</h2>';
+        document.getElementById('userTweets').innerHTML = '<h2>' + window.location.pathname.split("/")[2] + ' has no Tweets!</h2>';
       } else {
         var userstweets = JSON.parse(data);
         document.getElementById('userTweets').innerHTML = generateTweetsDivs(usersInfo.avatar, usersInfo.username, userstweets);
