@@ -1,10 +1,11 @@
 // recevedObject when user request Home{}
-//cookie { payload:{ username : ' ' , avatarUrl : ' '}}
+// cookie { payload:{ username : ' ' , avatarUrl : ' '}}
 var navElements = {
   navElement: document.getElementById('userNav'),
   username: document.createElement('h4'),
   pAvatar: document.createElement('img')
 };
+
 var addTweetForm = document.getElementById('addTweetForm');
 
 if (addTweetForm) {
