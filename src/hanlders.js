@@ -8,7 +8,7 @@ function genaricHandler (req, res) {
   let url = req.url;
   if (url === '/') {
     url = 'index.html';
-  } else if (url == '/home') {
+  } else if (url === '/home') {
     url = 'home.html';
   }
   let parts = url.split('.');
@@ -21,7 +21,7 @@ function genaricHandler (req, res) {
   };
   fs.readFile(`${__dirname}/../public/${url}`, (err, data) => {
     if (err) {
-      fs.readFile(`${__dirname}/../public/404.html`,'utf-8', (err2, data2) => {
+      fs.readFile(`${__dirname}/../public/404.html`, 'utf-8', (err2, data2) => {
         if (err2) {
           res.writeHead(500, {'Content-Type': 'text/html'});
           res.end('<h1>500 , Server Error</h1>');
@@ -105,24 +105,36 @@ function createtweet (req, res) {
     });
     req.on('end', () => {
       // should get response in this format ={ status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!' ,errorMsg:''}
-      insertTweet(username, tweetText, (err, status) => {
+      insertTweet(username, tweetText, (err, resObj) => {
         if (err) {
           let msg = {};
-          msg.status = false;
-          msg.errorMessage = status.errorMsg;
+          obj.status = false;
+          obj.errorMessage = err;
           res.writeHead(200, {'Content-Type': 'application/json'});
-          res.end(JSON.parse(msg));
+          res.end(JSON.parse(obj));
         } else {
           res.writeHead(200, {'Content-Type': 'application/json'});
-          res.end(JSON.parse(status));
+          res.end(JSON.parse(resObj));
         }
       });
     });
   });
 }
-
+function getalltweets(req ,res){
+  getAllTweetFromDB((err ,tweets)=>{
+    if(err){
+      res.writeHead(404, {'Content-Type': 'text/plain'});
+      res.end(JSON.stringify({status:false , errorMsg:err}));
+    }else {
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end(JSON.stringify(tweets));
+    }
+  })
+}
 module.exports = {
   genaricHandler,
   loginHandler,
-  signupHandler
+  signupHandler,
+  createtweet,
+  getalltweets
 };

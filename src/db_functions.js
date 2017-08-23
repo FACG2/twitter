@@ -69,14 +69,25 @@ const addUser = (obj, cb) => {// eslint-disable-line
      }
    });
  };
- insertTweet('eslam', 'hellloww foks!! ^_^', (err, res) => {
-   if (err) {
-     console.log(err);
-   }
-   console.log(res);
- });
+ // should return { tweets:[t1:{tweetText:' ' , ownerName:'' , avatarUrl},t2 ,t3]}
+
+ const getAllTweetFromDB = (cb) => {
+   const sql = {
+     text: 'SELECT username ,avatar ,context ,date FROM tweets join users on users.id=tweets.owner_id LIMIT 10'
+   };
+   dbConnection.query(sql, (err, tweets) => {
+     if (err) {
+       cd(err);
+     } else {
+       cb(null, tweets.rows);
+     }
+   });
+ };
+
  module.exports = {
    loginQuery,
    addUser,
-   searchUser
+   searchUser,
+   insertTweet,
+   getAllTweetFromDB
  };
