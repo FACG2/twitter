@@ -1,5 +1,5 @@
 // recevedObject when user request Home{}
-// cookie { payload:{ username : ' ' , avatarUrl : ' '}}
+// expected cookie { payload:{ username : ' ' , avatarUrl : ' '}}
 var navElements = {
   navElement: document.getElementById('userNav'),
   username: document.createElement('h4'),
@@ -45,6 +45,8 @@ if (document.cookie.payload.username !== undefined) {
     });
   });
 }
+
+// handler errors comming from the server
 function errorHandler (err, location) {
   switch (location) {
     case 'addTweet':
@@ -64,13 +66,13 @@ function renderTweets (response) {
 
   var tweetList = document.querySelector('.recentTweets');
 
-  var avatar = document.querySelector('.tweetHeader img')[0];
+  var avatar = document.querySelector('.tweetHeader > img')[0];
   avatar.src = tweetAvataUrl;
   tweetList.appendChild(avatar);
-  var tweeterName = document.querySelector('.tweetHeader h6')[0];
+  var tweeterName = document.querySelector('.tweetHeader > h6')[0];
   tweeterName.textContent = tweetOwner;
   tweetList.appendChild(tweeterName);
-  var tweetBody = document.querySelector('.singleTweet p')[0];
+  var tweetBody = document.querySelector('.singleTweet > p')[0];
   tweetBody.textContent = tweetText;
   tweetList.appendChild(tweetBody);
 }
