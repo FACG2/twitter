@@ -12,9 +12,9 @@ var validation = {
   var signupNoteDiv = document.getElementsByClassName('errNote')[1];
   var validationErrors = {username: '', password: '', confirmPassword: ''};
   usernameInput.addEventListener('focusout', function () {
-    if (this.value.length < 4) {
+    if (this.value.length < 2) {
       this.classList.add('wrongInput');
-      validationErrors.username = 'Email is invalid';
+      validationErrors.username = 'username is invalid';
       validation.email = false;
     } else {
       this.classList.remove('wrongInput');
@@ -42,7 +42,6 @@ var validation = {
       this.classList.add('wrongInput');
       validationErrors.confirmPassword = 'Password fields are not matched!!';
       validation.confirmPassword = false;
-      console.log('walid');
     } else {
       this.classList.remove('wrongInput');
       validation.confirmPassword = true;
@@ -50,7 +49,7 @@ var validation = {
     }
     submitSignup.disabled = !(isFormValid(validation));
   });
-  signupNoteDiv.textContent = validationErrors.reduce(function (acc, message) {
+  signupNoteDiv.textContent = Object.values(validationErrors).reduce(function (acc, message) {
     acc += message;
   }, '');
   // enable or disable submit button of signup

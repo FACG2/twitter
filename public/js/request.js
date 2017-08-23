@@ -8,10 +8,10 @@ function apiReq (url, method, callback, postData) {// eslint-disable-line
   xhttp.onreadystatechange = function () {
     var myJSONRemote;
     if (this.readyState === 4 && this.status === 200) {
-      myJSONRemote = JSON.parse(this.responseText);
+      myJSONRemote = this.responseText;
       callback(null, myJSONRemote);
     } else if (this.status === 500) {
-      myJSONRemote = JSON.parse(this.responseText);
+      myJSONRemote = this.responseText;
       callback(myJSONRemote);
     }
   };

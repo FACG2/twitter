@@ -2,9 +2,10 @@ const handler = require('./hanlders.js');
 
 module.exports = (req, res) => {
   const url = req.url;
-  if (url === '/login') {
+  const method = req.method;
+  if (url === '/login' && method === 'POST') {
     handler.loginHandler(req, res);
-  } else if (url === '/signup') {
+  } else if (url === '/signup' && method === 'POST') {
     handler.signupHandler(req, res);
   } else if (url === '/createtweet') {
     handler.createtweet(req, res);
