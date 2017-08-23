@@ -38,7 +38,7 @@ const addUser = (obj, cb) => {// eslint-disable-line
      } else {
        const sql = {
          text: 'INSERT INTO tweets (owner_id , context ,date) VALUES ($1 , $2 ,to_timestamp($3))',
-         values: [user.id, tweetText, Date.now() / 1000 ]
+         values: [ user.id, tweetText, Date.now() / 1000 ]
        };
        dbConnection.query(sql, (err, res) => {
          if (err) {
@@ -77,7 +77,7 @@ const addUser = (obj, cb) => {// eslint-disable-line
    };
    dbConnection.query(sql, (err, tweets) => {
      if (err) {
-       cd(err);
+       cb(err);
      } else {
        cb(null, tweets.rows);
      }
