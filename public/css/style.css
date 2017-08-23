@@ -1,13 +1,10 @@
-html{
-  height: 100%;
-}
-
+/*
+#1da1f2
+*/
 body {
-    height: 100%;
     display: flex;
     flex-direction: column;
 }
-
 * {
   padding: 0;
   margin: 0;
@@ -15,276 +12,93 @@ body {
 
 .container {
   width: 100%;
-
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-
-header {
-  background-color: #fff;
-  height: 70px;
-}
-
-header a{
-  font-family: monospace, sans-serif;
-  font-size: 20px;
-  color: #1da1f2;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-div a{
-  margin-top: 10px;
-  margin-left: 10px;
-
-}
-
-.mainContent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    /* margin: 0 auto; */
-    width: 100%;
-    background-image: url('../img/background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.errorcont{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  /* margin: 0 auto; */
-  width: 100%;
-  background-image: url('../img/error.png');
-  background-repeat: no-repeat;
+body{
+  background: url('../img/background.jpg') no-repeat;
   background-size: cover;
 }
-
-.mainContent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    /* margin: 0 auto; */
-    width: 100%;
-    background-image: url('../img/background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+header{
+  background: rgba(255,255,255,0.6);
 }
-
-.login-title{
-  margin-bottom: 5px;
-  font-size: 25px;
+.mainContent{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 7vh;
 }
-
-h2{
-  margin-bottom: 5px;
-  font-size: 25px;
-}
-
-input[type="submit"] {
-    border-radius: 60px;
-    background-color: rgb(29, 161, 242);
-    width: 40%;
-    height: 35px;
-    float: right;
-    margin-right: 45px;
-    font-weight: bold;
-    font: #fff;
-    font: white;
-}
-
-nav {
-  width: 800px;
+.mainContent>section{
+  width: 100%;
+  max-width: 340px;
+  background: white;
   padding: 20px;
-  margin-left: 100px;
+  border-radius: 20px;
 }
-
-#signupSection input[type="submit"]:hover {
-    border-radius: 30px;
-    background-color: #006dbf;
-    width: 40%;
-    height: 35px;
-    float: right;
-    margin-right: 45px;
-    border-color: rgb(29, 161, 242);
+.mainContent>section h2{
+  color: #1da1f2;
+  text-align: center;
+  padding: 30px 0;
+  padding-top: 0;
 }
-
-
-#loginSection input[type="submit"] {
-    border-radius: 30px;
-    background-color: #fff;
-    width: 40%;
-    height: 35px;
-    float: right;
-    margin-right: 45px;
-    border: 2px solid;
-    border-color: rgb(29, 161, 242);
+.mainContent>section input[type="text"],.mainContent>section input[type="submit"], .mainContent>section input[type="password"]{
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  border-radius: 10px;
 }
-
-#loginSection input[type="submit"]:hover {
-    border-radius: 30px;
-    background-color: #e5f2ff;
-    width: 40%;
-    height: 35px;
-    float: right;
-    margin-right: 45px;
-    border: 2px solid;
-    border-color: rgb(29, 161, 242);
+.addNewTweet button ,.mainContent>section input[type="submit"]{
+  background: #1da1f2;
+  color:white;
 }
-
-/****  home page ****/
-.addNewTweet {
-    width: 350px;
-    height: 61px;
-    padding: 50px;
-    background-color: white;
-    margin: -30px;
-    margin-top: 195px;
+#genderRadio{
+  display: flex;
+  justify-content: center;
 }
-
-.recentTweets {
-    width: 350px;
-    padding: 50px;
-    background-color: white;
-    margin: -5px;
-}
-
-p {
-    padding: 20px 40px;
-    border-radius: 30px;
-    border: 2px solid;
-    border-color: #2b99da;
-    color: gray;
-    margin-top: 20px;
-}
-
-.mainContenttweet {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    width: 100%;
-    background-image: url(../img/background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#bavatar{
-    height: 35px;
-    float: left;
+#genderRadio input{
+  margin-left: 5px;
 }
 
 
-button[type="submit"] {
-    border-radius: 30px;
-    background-color: #fff;
-    width: 40%;
-    height: 35px;
-    float: right;
-    margin-right: 45px;
-    border: 2px solid;
-    border-color: rgb(29, 161, 242);
+/* home*/
+.mainContenttweet{
+  margin-top: 20px;
+  background: white;
+  max-width: 800px;
+  padding-top:20px;
 }
-
-button[type="submit"]:hover {
-    border-radius: 30px;
-    background-color: #e5f2ff;
-    width: 40%;
-    height: 35px;
-    float: right;
-    margin-right: 45px;
-    border: 2px solid;
-    border-color: rgb(29, 161, 242);
+.addNewTweet{
+  margin: 0 auto;
+  display: table;
 }
-
-#tweetText{
-    margin-bottom: 5px;
-    height: 30px;
-    width: 300px;
-  }
-
-h6{
-    font-size: 20px;
-    margin-bottom: 5px;
-    color: gray;
+.addNewTweet input , .addNewTweet button{
+  padding: 5px;
+  border-radius: 5px;
 }
-
-
-/*section#signupSection {
-    width: 350px;
-    height: 196px;
-    padding: 50px;
-    background-color: white;
-    margin: 30px;*/
-
-/**** home page  ***/
-
-
-input[type="radio"] {
-margin-left: 15px;
+.recentTweets{
+  border-top: 1px solid #cecece;
+  margin-top: 20px;
+  padding-top:20px;
 }
-
-input{
-  /*height: 30px;
-  width: 300px;*/
-  margin-bottom: 5px;
+.tweetHeader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.input-word{
-  height: 30px;
-  width: 300px;
+.tweetHeader img{
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
 }
-section#signupSection {
-    width: 350px;
-    height: 196px;
-    padding: 50px;
-    background-color: white;
-    margin: 30px;
+.singleTweet{
+  border-bottom: 1px solid #cecece;
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  padding:20px 0;
 }
-
-
-section#loginSection {
-    width: 350px;
-    height: 134px;
-    padding: 50px;
-    background-color: white;
-    margin: 50px;
-  }
-
-    /* media query */
-    @media (max-width: 768px) {
-      header .container,
-      header nav,
-     #signupSection
-      /*#boxs .box,
-      article#main-col,
-      aside#sider{*/
-      {
-        width: 100%;
-        float: left;
-        text-align: center;
-      }
-
-    header {
-      padding-bottom: 20px;
-    }
-    /*#showcase h1 {
-      margin-top: 40px;
-    }
-    #newsletter button,
-    .button1
-     {
-      display: block;
-      width: 100%;
-    }
-    #newsletter form input[type="email"], .quote input, .quote textarea{
-      width: 100%;
-      margin-bottom: 5px;
-    }*/
-      }
+.singleTweet p{
+  width: 60%;
+  line-height: 2;
+  margin: 0 auto;
+}

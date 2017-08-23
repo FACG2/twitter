@@ -20,7 +20,6 @@
    });
  };
 
-
 const addUser = (obj, cb) => {// eslint-disable-line
   dbConnection.query(`INSERT INTO users (username ,password,gender,avatar) VALUES ('${obj.username}', '${obj.password}', '${obj.gender}','${obj.avatar}')`, (err, res) => {
     if (err) {
@@ -85,27 +84,25 @@ const addUser = (obj, cb) => {// eslint-disable-line
    });
  };
 
-const profileInfo = (username, cb) => {
-  dbConnection.query(`SELECT users.username, users.bio, users.avatar, users.gender from users where  users.username  = '${username}'`, (err, res) => {
-    if (err) {
-      cb(err);
-    } else {
-      cb(null, res.rows);
-    }
-  });
-};
+ const profileInfo = (username, cb) => {
+   dbConnection.query(`SELECT users.username, users.bio, users.avatar, users.gender from users where  users.username  = '${username}'`, (err, res) => {
+     if (err) {
+       cb(err);
+     } else {
+       cb(null, res.rows);
+     }
+   });
+ };
 
-const profileTweets = (username, cb) => {
-  dbConnection.query(`SELECT context, date FROM tweets WHERE owner_id=(select id from users where username='${username}')`, (err, res) => {
-    if (err) {
-      cb(err);
-    } else {
-      cb(null, res.rows);
-    }
-  });
-};
-
-
+ const profileTweets = (username, cb) => {
+   dbConnection.query(`SELECT context, date FROM tweets WHERE owner_id=(select id from users where username='${username}')`, (err, res) => {
+     if (err) {
+       cb(err);
+     } else {
+       cb(null, res.rows);
+     }
+   });
+ };
 
  module.exports = {
    loginQuery,
