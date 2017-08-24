@@ -1,6 +1,4 @@
 # Twitter Site
-# "Home Page" is not ready yet, sot please try to not use the "submit tweet" button.
-## you can press on your profile page in the nav bar to navigate your profile page.
 
 > A simple twitter Site
 
@@ -40,4 +38,3 @@ Also the user will be able to write, delete and edits his own tweets and view ot
  3. Run the project on the browser localhost:4000
 
  ### Visit the site from [Here](https://fagtwitter.herokuapp.com)
-
