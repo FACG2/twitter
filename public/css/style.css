@@ -109,6 +109,8 @@ nav .container{
   border-top: 1px solid #cecece;
   margin-top: 20px;
   padding-top:20px;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .tweetHeader{
   display: flex;
