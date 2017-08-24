@@ -36,5 +36,5 @@ Also the user will be able to write, delete and edits his own tweets and view ot
 
  3. Run the project on the browser localhost:4000
 
- ### Visit the site from [Here](http://heroku.com)
+ ### Visit the site from [Here](https://fagtwitter.herokuapp.com)
 
