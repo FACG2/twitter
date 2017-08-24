@@ -82,10 +82,12 @@ function renderTweet (response) {
   tweet.classList.add('singleTweet');
   var tweetHeader = document.createElement('div');
   tweetHeader.classList.add('tweetHeader');
-
+  var imgLink = document.createElement('a');
+  imgLink.href = '/users/' + tweetOwner;
   var avatar = document.createElement('img');
   avatar.src = tweetAvataUrl;
-  tweetHeader.appendChild(avatar);
+  imgLink.appendChild(avatar);
+  tweetHeader.appendChild(imgLink);
   var tweeterName = document.createElement('h6');
   tweeterName.textContent = tweetOwner;
   tweetHeader.appendChild(tweeterName);
