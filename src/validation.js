@@ -53,7 +53,7 @@ function signupValidation (signupData, cb) {
         if (signupData.gender === 'F') {
           signupData.avatar = 'https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_beanie_girl-512.png';
         } else {
-          signupData.avatar = 'https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_handsome_guy-512.png';
+          signupData.avatar = 'https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_sport_guy-512.png';
         }
         dbfunctions.addUser(signupData, (err2, ress2) => {
           if (err2) {
