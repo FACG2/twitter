@@ -7,8 +7,12 @@
 >Done by: walid, Eslam, Hana and Kefah
 
 ### About the project:
-The project is a small twitter look alike site which will allow the user to register if he is not, or login if he is already a member in the site.
-Also the user will be able to write, delete and edits his own tweets and view others' tweets.
+ 1. This project is a web app that mimics twitter site. it allows user to signup and login once until the user press the log out button.
+
+ 2. then the home page is the page which contains all tweets for all users and add new tweets.
+
+ 3. the last thing that the nav bar contains the username and his avatar which is click able, so you can navigate the user profile.
+
 
 ### The site fulfill the following Requirements:
 
