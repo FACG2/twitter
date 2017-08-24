@@ -1,5 +1,5 @@
 # Twitter Site
-# "Home Page" is not ready yet, sot please try to not use the "subit tweet" button.
+# "Home Page" is not ready yet, sot please try to not use the "submit tweet" button.
 ## you can press on your profile page in the nav bar to navigate your profile page.
 
 > A simple twitter Site
