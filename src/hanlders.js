@@ -50,7 +50,7 @@ function loginHandler (req, res) {
     loginData += chunk;
   });
   req.on('end', () => {
-    loginData = JSON.parse(loginData);
+    loginData = JSON.parse(loginData); console.log(loginData.username);
     validation.loginValidation(loginData.username, loginData.password, (error, result) => {
       if (error || result.msg !== '') {
         res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -89,11 +89,11 @@ function signupHandler (req, res) {
         res.end(result.msg);
       } else {
         var token = jwt.sign({userName: result.userRes}, 'twitter shhh');
-        res.writeHead(200, {'Set-Cookie': [
+        res.writeHead(200, {'Set-Cookie': JSON.stringify([
           `user=${result.userRes};`,
           `avatar=${result.avatar};`,
           `token=${token};`
-        ]});
+        ])});
         res.end('');
       }
     });
@@ -125,7 +125,7 @@ function getProfileTweetsHandler (req, res, username) {
 }
 
 function createtweet (req, res) {
-  const token = cookie.parse(req.cookie).token;
+  const token = cookie.parse(req.headers.cookie).token;
   jwt.verify(token, 'twitter shhh', function (err, user) {
     if (err) {
       res.writeHead(401, {'Content-Type': 'text/html'});
@@ -133,13 +133,8 @@ function createtweet (req, res) {
     }
     let username = user.userName;
     let tweetText = '';
-    req.on('data', (err, tweTxt) => {
-      if (err) {
-        res.writeHead(404, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({status: false, errorMsg: err}));
-      } else {
-        tweetText += tweTxt;
-      }
+    req.on('data', (chunk) => {
+      tweetText += chunk;
     });
     req.on('end', () => {
       // should get response in this format ={ status : ' ' , ownerName:' ',tweetText:'',avatarUrl: 'http://someLinke!' ,errorMsg:''}
@@ -149,10 +144,10 @@ function createtweet (req, res) {
           obj.status = false;
           obj.errorMessage = err;
           res.writeHead(200, {'Content-Type': 'application/json'});
-          res.end(JSON.parse(obj));
+          res.end(JSON.stringify(obj));
         } else {
           res.writeHead(200, {'Content-Type': 'application/json'});
-          res.end(JSON.parse(resObj));
+          res.end(JSON.stringify(resObj));
         }
       });
     });
@@ -165,7 +160,7 @@ function getalltweets (req, res) {
       res.end(JSON.stringify({status: false, errorMsg: err}));
     } else {
       // { tweetNumber : 10 , tweets:[t1:{tweetText:' ' , ownerName:'' , avatarUrl},t2 ,t3]}
-      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.writeHead(200, {'Content-Type': 'application/json'});
       res.end(JSON.stringify(tweets));
     }
   });
