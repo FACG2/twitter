@@ -17,45 +17,45 @@ if (addTweetForm) {
     event.preventDefault();
     var tweetText = event.target.firstElementChild.value;
     // expected response = { status : ' ' , ownerName;:' ',tweetText:'',avatarUrl: 'http://someLinke!'}
-    apiReq('/createtweet', 'POST', function (err, data) {
-      if (err) {
-        errorHandler('addTweet', err);
-      } else {
-        if (JSON.parse(data).status) {
-          renderTweet(JSON.parse(data));
+    if (tweetText.trim().length > 1) {
+      apiReq('/createtweet', 'POST', function (err, data) {
+        if (err) {
+          errorHandler('addTweet', err);
         } else {
-          errorHandler('addTweet', 'Cannot add tweet Right now');
+          if (JSON.parse(data).status) {
+            renderTweet(JSON.parse(data));
+          } else {
+            errorHandler('addTweet', 'Cannot add tweet Right now');
+          }
         }
-      }
-    }, tweetText);
+      }, tweetText);
+    } else {
+      document.getElementById('tweetText').placeholder = 'Add new tweet....';
+      document.getElementById('tweetText').classList.add('wrongInput');
+    }
   });
 }
 // just to be more specific ,we check if there is acookie and there is a username in the payload
 // document.cookie.payload.username = undefined;
-if (false/* document.cookie && document.cookie.payload.username !== undefined */) {
-  navElements.username.textContent = document.cookie.payload.username;
-  navElements.pAvatar.src = document.cookie.payload.avatarUrl;
-} else {
-  window.addEventListener('onload', function (e) {
-    e.preventDefault();
+window.addEventListener('onload', function (e) {
+  e.preventDefault();
     // render the nav bar
     // expected response = {status:'' , errorMsg:'', username : ' ' , avatar: 'http://someLinke!'}
-    apiReq('/getuserData', 'GET', (err, res) => {
-      if (err) {
-        errorHandler(err, 'nav');
+  apiReq('/getuserData', 'GET', (err, res) => {
+    if (err) {
+      errorHandler(err, 'nav');
+    } else {
+      res = JSON.parse(res);
+      if (res.status) {
+        errorHandler(JSON.parse(res).err, JSON.parse(res).errorMsg);
       } else {
         res = JSON.parse(res);
-        if (res.status) {
-          errorHandler(JSON.parse(res).err, JSON.parse(res).errorMsg);
-        } else {
-          res = JSON.parse(res);
-          navElements.username.textContent = res.username;
-          navElements.pAvatar.src = res.avatar;
-        }
+        navElements.username.textContent = res.username;
+        navElements.pAvatar.src = res.avatar;
       }
-    });
+    }
   });
-}
+});
 
 // handler errors comming from the server
 function errorHandler (err, location) {
@@ -73,7 +73,6 @@ function errorHandler (err, location) {
 
 function renderTweet (response) {
 // profile avatar , user name(tweet owner) , singleTweet = tweetBody
-  console.log(response.context || response.tweetText);
   var tweetText = response.context || response.tweetText;
   var tweetOwner = response.username || response.ownerName;
   var tweetAvataUrl = response.avatar || response.avatarUrl;
