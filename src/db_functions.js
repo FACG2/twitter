@@ -73,7 +73,7 @@ const addUser = (obj, cb) => {// eslint-disable-line
 
  const getAllTweetFromDB = (cb) => {
    const sql = {
-     text: 'SELECT username ,avatar ,context ,date FROM tweets join users on users.id=tweets.owner_id LIMIT 10'
+     text: 'SELECT username ,avatar ,context ,date FROM tweets join users on users.id=tweets.owner_id  ORDER BY tweets.date DESC LIMIT 15'
    };
    dbConnection.query(sql, (err, tweets) => {
      if (err) {
