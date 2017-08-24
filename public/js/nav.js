@@ -1,9 +1,8 @@
 (function () {
   /* Add username and avatar to nav */
-  var cookies = document.cookie.split(/=|;/);
-  if (cookies.includes('user') || cookies.includes(' avatar')) {
-    var user = cookies[cookies.indexOf('user') + 1];
-    var avatar = cookies[cookies.indexOf(' avatar') + 1];
+  if (getCookie('user') && getCookie('avatar')) {
+    var user = getCookie('user');
+    var avatar = getCookie('avatar');
     document.getElementById('userNav').innerHTML = '<p id="logout">Log out</p>' +
                                           '<div class="navUser">' +
                                             '<a href="/users/' + user + '"><img src="' + avatar + '" alt="' + user + '"></a>' +
@@ -28,4 +27,10 @@ function removeCookies () {
   //   document.cookie += '; max-age=0';
   //   removeCookies();
   // }
+}
+function getCookie (cookiename) {
+// Get name followed by anything except a semicolon
+  var cookiestring = RegExp('' + cookiename + '[^;]+').exec(document.cookie);
+// Return everything after the equal sign, or an empty string if the cookie name not found
+  return unescape(cookiestring ? cookiestring.toString().replace(/^[^=]+./, '') : '');
 }
