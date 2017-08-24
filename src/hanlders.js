@@ -83,17 +83,19 @@ function signupHandler (req, res) {
   });
   req.on('end', () => {
     signupData = JSON.parse(signupData);
+    console.log('signupData',signupData);
     validation.signupValidation(signupData, (error, result) => {
       if (error || result.msg !== '') {
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.end(result.msg);
       } else {
+
         var token = jwt.sign({userName: result.userRes}, 'twitter shhh');
-        res.writeHead(200, {'Set-Cookie': JSON.stringify([
+        res.writeHead(200, {'Set-Cookie': [
           `user=${result.userRes};`,
           `avatar=${result.avatar};`,
           `token=${token};`
-        ])});
+        ]});
         res.end('');
       }
     });
